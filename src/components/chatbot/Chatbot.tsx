@@ -1,86 +1,192 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { MessageSquare, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ChatBubbleIcon, Cross2Icon } from '@radix-ui/react-icons';
+import { Input } from '@/components/ui/input';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { supabase } from '@/lib/supabase';
+import { Tables } from '@/types/supabase';
+import { cn } from '@/lib/utils'; // Import the cn utility function
 
-const Chatbot = () => {
+type Message = Tables<'messages'>;
+
+const N8N_WEBHOOK_URL = import.meta.env.VITE_N8N_WEBHOOK_URL;
+
+const Chatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // IMPORTANT: Replace this with your actual webhook URL
-  const webhookUrl = 'https://n8n.sunilkhatri.info/webhook/chatbot';
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
-  const toggleChat = () => {
-    setIsOpen(!isOpen);
+  useEffect(() => {
+    if (isOpen) {
+      fetchMessages();
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const fetchMessages = async () => {
+    setIsLoading(true);
+    const { data, error } = await supabase
+      .from('messages')
+      .select('*')
+      .order('created_at', { ascending: true });
+
+    if (error) {
+      console.error('Error fetching messages:', error);
+    } else {
+      setMessages(data || []);
+    }
+    setIsLoading(false);
+  };
+
+  const sendMessage = async () => {
+    if (input.trim() === '') return;
+
+    const userMessage: Tables<'messages'> = {
+      id: crypto.randomUUID(), // Client-side UUID for immediate display
+      user_id: (await supabase.auth.getUser()).data.user?.id || null,
+      content: input,
+      is_user_message: true,
+      created_at: new Date().toISOString(),
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setInput('');
+    setIsLoading(true);
+
+    // Save user message to Supabase
+    const { error: insertError } = await supabase.from('messages').insert(userMessage);
+    if (insertError) {
+      console.error('Error saving user message:', insertError);
+      // Optionally, revert message or show error to user
+    }
+
+    // Send message to n8n webhook
+    try {
+      const response = await fetch(N8N_WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: userMessage.content, userId: userMessage.user_id }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const botResponseContent = data.response || "Sorry, I didn't understand that.";
+
+      const botMessage: Tables<'messages'> = {
+        id: crypto.randomUUID(),
+        user_id: userMessage.user_id, // Associate with the same user
+        content: botResponseContent,
+        is_user_message: false,
+        created_at: new Date().toISOString(),
+      };
+
+      setMessages((prev) => [...prev, botMessage]);
+
+      // Save bot message to Supabase
+      const { error: botInsertError } = await supabase.from('messages').insert(botMessage);
+      if (botInsertError) {
+        console.error('Error saving bot message:', botInsertError);
+      }
+
+    } catch (error) {
+      console.error('Error sending message to n8n or receiving response:', error);
+      const errorMessage: Tables<'messages'> = {
+        id: crypto.randomUUID(),
+        user_id: userMessage.user_id,
+        content: "Oops! Something went wrong. Please try again.",
+        is_user_message: false,
+        created_at: new Date().toISOString(),
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <>
-      <div className="fixed bottom-8 right-8 z-50">
-        <AnimatePresence>
-          {isOpen ? (
-            <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.95 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-              className="absolute bottom-20 right-0 w-[calc(100vw-4rem)] max-w-sm h-[60vh] bg-card border border-border rounded-lg shadow-xl flex flex-col"
-              style={{ originX: 1, originY: 1 }}
-            >
-              <header className="flex items-center justify-between p-4 border-b">
-                <h3 className="text-lg font-semibold">Support Chat</h3>
-              </header>
-              <div className="flex-grow p-0 overflow-hidden">
-                <iframe
-                  src={webhookUrl}
-                  title="Chatbot"
-                  className="w-full h-full border-0"
-                />
-              </div>
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
-        <motion.div
-          initial={{ scale: 0, y: 50, opacity: 0 }}
-          animate={{ scale: 1, y: 0, opacity: 1 }}
-          transition={{ delay: 0.5, type: 'spring', stiffness: 260, damping: 20 }}
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger asChild>
+        <Button
+          variant="default"
+          size="icon"
+          className="fixed bottom-4 right-4 rounded-full shadow-lg z-50"
+          aria-label="Open Chatbot"
         >
-          <motion.div
-            animate={{
-              scale: [1, 1.05, 1],
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <Button
-              onClick={toggleChat}
-              className="w-16 h-16 rounded-full shadow-lg flex items-center justify-center"
-              aria-label={isOpen ? 'Close chat' : 'Open chat'}
-            >
-              <AnimatePresence initial={false} mode="wait">
-                <motion.div
-                  key={isOpen ? 'close' : 'open'}
-                  initial={{ rotate: -90, opacity: 0, y: 10 }}
-                  animate={{ rotate: 0, opacity: 1, y: 0 }}
-                  exit={{ rotate: 90, opacity: 0, y: -10 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {isOpen ? (
-                    <Cross2Icon className="h-8 w-8" />
-                  ) : (
-                    <ChatBubbleIcon className="h-8 w-8" />
+          <MessageSquare className="h-5 w-5" />
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px] h-[80vh] flex flex-col">
+        <DialogHeader>
+          <DialogTitle>Chat with me!</DialogTitle>
+        </DialogHeader>
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 border rounded-md bg-muted/20">
+          {isLoading && messages.length === 0 ? (
+            <div className="text-center text-muted-foreground">Loading messages...</div>
+          ) : messages.length === 0 ? (
+            <div className="text-center text-muted-foreground">No messages yet. Start a conversation!</div>
+          ) : (
+            messages.map((msg) => (
+              <div
+                key={msg.id}
+                className={`flex ${msg.is_user_message ? 'justify-end' : 'justify-start'}`}
+              >
+                <div
+                  className={cn(
+                    'max-w-[70%] p-3 rounded-lg',
+                    msg.is_user_message
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-secondary text-secondary-foreground'
                   )}
-                </motion.div>
-              </AnimatePresence>
-            </Button>
-          </motion.div>
-        </motion.div>
-      </div>
-    </>
+                >
+                  {msg.content}
+                  <div className="text-xs text-right opacity-70 mt-1">
+                    {new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
+          <div ref={messagesEndRef} />
+        </div>
+        <div className="flex gap-2 mt-4">
+          <Input
+            placeholder="Type your message..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter' && !isLoading) {
+                sendMessage();
+              }
+            }}
+            disabled={isLoading}
+          />
+          <Button onClick={sendMessage} disabled={isLoading}>
+            <Send className="h-4 w-4" />
+            <span className="sr-only">Send</span>
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 };
 
