@@ -7,7 +7,7 @@ const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   // IMPORTANT: Replace this with your actual webhook URL
-  const webhookUrl = 'https://n8n.sunilkhatri.info/webhook-test/ff1b7a00-64c2-4f47-8ce8-8e77fb39e3a3';
+  const webhookUrl = 'https://n8n.sunilkhatri.info/webhook/chatbot';
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
