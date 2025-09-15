@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import { motion } from "framer-motion";
+import Chatbot from "../chatbot/Chatbot";
 
 const Layout = () => {
   return (
@@ -15,6 +16,7 @@ const Layout = () => {
       >
         <Outlet />
       </motion.main>
+      <Chatbot />
     </div>
   );
 };
