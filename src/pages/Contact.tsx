@@ -45,22 +45,37 @@ const Contact = () => {
     e.preventDefault();
     setIsLoading(true);
 
+    const baseUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
+    const params = new URLSearchParams({
+      Name: name,
+      Email: email,
+      Message: message,
+    });
+    const url = `${baseUrl}?${params.toString()}`;
+
     try {
-      const response = await fetch(import.meta.env.VITE_N8N_WEBHOOK_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, message }),
+      const response = await fetch(url, {
+        method: 'GET',
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        let errorMessage = 'Network response was not ok';
+        try {
+          const errorData = await response.json();
+          if (errorData && errorData.message) {
+            errorMessage = errorData.message;
+          }
+        } catch (e) {
+          // Response was not JSON or something else went wrong
+        }
+        throw new Error(errorMessage);
       }
+
+      const data = await response.json();
 
       toast({
         title: "Message Sent!",
-        description: "Thanks for reaching out. I'll get back to you soon.",
+        description: data.message || "Thanks for reaching out. I'll get back to you soon.",
       });
       setName("");
       setEmail("");
@@ -69,7 +84,7 @@ const Contact = () => {
       console.error('Failed to send message:', error);
       toast({
         title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your request. Please try again.",
+        description: error instanceof Error ? error.message : "There was a problem with your request. Please try again.",
         variant: "destructive",
       });
     } finally {
