@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -6,7 +6,12 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { resumeData, iconMap } from "@/lib/data";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2 } from "lucide-react";
+import { Loader2, CheckCircle } from "lucide-react";
+
+type SubmissionStatus = {
+  submitted: boolean;
+  message: string;
+};
 
 const Contact = () => {
   const { toast } = useToast();
@@ -14,6 +19,16 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus | null>(null);
+
+  useEffect(() => {
+    if (submissionStatus?.submitted) {
+      const timer = setTimeout(() => {
+        setSubmissionStatus(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [submissionStatus]);
 
   const contactDetails = [
     {
@@ -44,6 +59,7 @@ const Contact = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setSubmissionStatus(null);
 
     const baseUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
     const params = new URLSearchParams({
@@ -53,9 +69,16 @@ const Contact = () => {
     });
     const url = `${baseUrl}?${params.toString()}`;
 
+    const username = 'n8n-sunil-contact';
+    const password = 'n8n-sunil-contact';
+    const credentials = btoa(`${username}:${password}`);
+
     try {
       const response = await fetch(url, {
         method: 'GET',
+        headers: {
+          'Authorization': `Basic ${credentials}`,
+        },
       });
 
       if (!response.ok) {
@@ -72,12 +95,12 @@ const Contact = () => {
       }
 
       const data = await response.json();
-
-      toast({
-        title: "Message Sent!",
-        description: data.message || "Thanks for reaching out. I'll get back to you soon.",
-        duration: 3000,
+      
+      setSubmissionStatus({
+        submitted: true,
+        message: data.message || "Thanks for reaching out. I'll get back to you soon.",
       });
+
       setName("");
       setEmail("");
       setMessage("");
@@ -128,50 +151,58 @@ const Contact = () => {
             <CardDescription>I'll get back to you as soon as possible.</CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">Name</Label>
-                <Input 
-                  id="name" 
-                  placeholder="Your Name" 
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                />
+            {submissionStatus?.submitted ? (
+              <div className="flex flex-col items-center justify-center h-full min-h-[280px] text-center">
+                <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
+                <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
+                <p className="text-muted-foreground">{submissionStatus.message}</p>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input 
-                  id="email" 
-                  type="email" 
-                  placeholder="your.email@example.com" 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="message">Message</Label>
-                <Textarea 
-                  id="message" 
-                  placeholder="Your message..." 
-                  rows={5} 
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  required
-                />
-              </div>
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  "Send Message"
-                )}
-              </Button>
-            </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Name</Label>
+                  <Input 
+                    id="name" 
+                    placeholder="Your Name" 
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input 
+                    id="email" 
+                    type="email" 
+                    placeholder="your.email@example.com" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="message">Message</Label>
+                  <Textarea 
+                    id="message" 
+                    placeholder="Your message..." 
+                    rows={5} 
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    required
+                  />
+                </div>
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    "Send Message"
+                  )}
+                </Button>
+              </form>
+            )}
           </CardContent>
         </Card>
       </div>
