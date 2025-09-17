@@ -76,6 +76,7 @@ const Contact = () => {
       toast({
         title: "Message Sent!",
         description: data.message || "Thanks for reaching out. I'll get back to you soon.",
+        duration: 3000,
       });
       setName("");
       setEmail("");
@@ -86,6 +87,7 @@ const Contact = () => {
         title: "Uh oh! Something went wrong.",
         description: error instanceof Error ? error.message : "There was a problem with your request. Please try again.",
         variant: "destructive",
+        duration: 3000,
       });
     } finally {
       setIsLoading(false);
