@@ -15,7 +15,7 @@ const About = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-1 flex flex-col items-center text-center">
           <Avatar className="w-48 h-48 mb-4 border-4 border-primary/10">
-            <AvatarImage src="https://github.com/shadcn.png" alt={resumeData.personal.name} />
+            <AvatarImage src="https://media.licdn.com/dms/image/v2/D5603AQE6GzdYmh8eOQ/profile-displayphoto-shrink_800_800/B56Za0Ql3YHUAc-/0/1746780971874?e=1761177600&v=beta&t=c4MfX5GzfHj6dNQYY74y7LzzSb6EPA-0H7EpCEgrBT0" alt={resumeData.personal.name} />
             <AvatarFallback>{resumeData.personal.name.charAt(0)}</AvatarFallback>
           </Avatar>
           <h3 className="text-2xl font-bold">{resumeData.personal.name}</h3>
