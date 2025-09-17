@@ -9,5 +9,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  // Removed optimizeDeps.exclude for lucide-react to potentially improve dev server startup
+  optimizeDeps: {
+    exclude: ['lucide-react'],
+  },
 });

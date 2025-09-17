@@ -1,17 +1,22 @@
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
-import Footer from "./Footer";
-import Chatbot from "../chatbot/Chatbot"; // Import the Chatbot component
+import { motion } from "framer-motion";
+import ChatWidget from "../chat/ChatWidget";
 
 const Layout = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow container mx-auto px-4 py-8">
+      <motion.main
+        className="flex-grow"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
         <Outlet />
-      </main>
-      <Footer />
-      <Chatbot /> {/* Add the Chatbot component here */}
+      </motion.main>
+      <ChatWidget />
     </div>
   );
 };
