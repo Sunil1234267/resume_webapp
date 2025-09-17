@@ -1,4 +1,4 @@
-import { useState, FormEvent, useEffect } from "react";
+import { useState, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,27 +8,13 @@ import { resumeData, iconMap } from "@/lib/data";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, CheckCircle } from "lucide-react";
 
-type SubmissionStatus = {
-  submitted: boolean;
-  message: string;
-};
-
 const Contact = () => {
   const { toast } = useToast();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus | null>(null);
-
-  useEffect(() => {
-    if (submissionStatus?.submitted) {
-      const timer = setTimeout(() => {
-        setSubmissionStatus(null);
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [submissionStatus]);
+  const [responseMsg, setResponseMsg] = useState<string | null>(null);
 
   const contactDetails = [
     {
@@ -59,53 +45,42 @@ const Contact = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setSubmissionStatus(null);
+    setResponseMsg(null);
 
     const baseUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
-    const params = new URLSearchParams({
-      Name: name,
-      Email: email,
-      Message: message,
-    });
-    const url = `${baseUrl}?${params.toString()}`;
-
-    const username = 'n8n-sunil-contact';
-    const password = 'n8n-sunil-contact';
-    const credentials = btoa(`${username}:${password}`);
+    const url = baseUrl;
 
     try {
       const response = await fetch(url, {
-        method: 'GET',
+        method: 'POST',
         headers: {
-          'Authorization': `Basic ${credentials}`,
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify({
+          Name: name,
+          Email: email,
+          Message: message,
+        }),
       });
 
-      if (!response.ok) {
-        let errorMessage = 'Network response was not ok';
-        try {
-          const errorData = await response.json();
-          if (errorData && errorData.message) {
-            errorMessage = errorData.message;
-          }
-        } catch (e) {
-          // Response was not JSON or something else went wrong
-        }
-        throw new Error(errorMessage);
+      let msg = "";
+      try {
+        const data = await response.json();
+        msg = data.message || "Thanks for reaching out. I'll get back to you soon.";
+      } catch {
+        msg = await response.text();
       }
 
-      const data = await response.json();
-      
-      setSubmissionStatus({
-        submitted: true,
-        message: data.message || "Thanks for reaching out. I'll get back to you soon.",
-      });
+      if (!response.ok) {
+        throw new Error(msg || 'Network response was not ok');
+      }
 
+      setResponseMsg(msg);
       setName("");
       setEmail("");
       setMessage("");
     } catch (error) {
-      console.error('Failed to send message:', error);
+      setResponseMsg(null);
       toast({
         title: "Uh oh! Something went wrong.",
         description: error instanceof Error ? error.message : "There was a problem with your request. Please try again.",
@@ -151,19 +126,19 @@ const Contact = () => {
             <CardDescription>I'll get back to you as soon as possible.</CardDescription>
           </CardHeader>
           <CardContent>
-            {submissionStatus?.submitted ? (
+            {responseMsg ? (
               <div className="flex flex-col items-center justify-center h-full min-h-[280px] text-center">
                 <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
-                <p className="text-muted-foreground">{submissionStatus.message}</p>
+                <p className="text-muted-foreground">{responseMsg}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name</Label>
-                  <Input 
-                    id="name" 
-                    placeholder="Your Name" 
+                  <Input
+                    id="name"
+                    placeholder="Your Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
@@ -171,10 +146,10 @@ const Contact = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input 
-                    id="email" 
-                    type="email" 
-                    placeholder="your.email@example.com" 
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="your.email@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -182,10 +157,10 @@ const Contact = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="message">Message</Label>
-                  <Textarea 
-                    id="message" 
-                    placeholder="Your message..." 
-                    rows={5} 
+                  <Textarea
+                    id="message"
+                    placeholder="Your message..."
+                    rows={5}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     required
