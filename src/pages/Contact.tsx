@@ -52,18 +52,19 @@ const Contact = () => {
     const password = 'n8n-sunil-contact';
     const auth = 'Basic ' + btoa(`${username}:${password}`);
 
+    const params = new URLSearchParams({
+      Name: name,
+      Email: email,
+      Message: message,
+    });
+    const fullUrl = `${url}?${params.toString()}`;
+
     try {
-      const response = await fetch(url, {
-        method: 'POST',
+      const response = await fetch(fullUrl, {
+        method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': auth,
         },
-        body: JSON.stringify({
-          Name: name,
-          Email: email,
-          Message: message,
-        }),
       });
 
       const responseText = await response.text();
@@ -138,10 +139,11 @@ const Contact = () => {
           </CardHeader>
           <CardContent>
             {responseMsg ? (
-              <div className="flex flex-col items-center justify-center h-full min-h-[280px] text-center">
+              <div className="flex flex-col items-center justify-center h-full min-h-[280px] text-center p-4">
                 <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
-                <p className="text-muted-foreground">{responseMsg}</p>
+                <p className="text-muted-foreground mb-6">{responseMsg}</p>
+                <Button onClick={() => setResponseMsg(null)}>Send Another Message</Button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
