@@ -87,11 +87,13 @@ export const resumeData = {
     {
       company: "KPIT",
       role: "Sr. Software Engineer",
-      duration: "March 2024 - Present",
+      duration: "March 2024 - August 2025",
+      logo: "https://logo.clearbit.com/kpit.com",
       clients: [
         {
           name: "Mercedes-Benz",
-          duration: "February 2025 - Present",
+          duration: "February 2025 - August 2025",
+          logo: "https://logo.clearbit.com/mercedes-benz.com",
           responsibilities: [
             "Executing comprehensive MIL/SIL testing to validate software against stringent requirements.",
             "Managing project workflows and issue tracking efficiently using Jira.",
@@ -103,6 +105,7 @@ export const resumeData = {
         {
           name: "TVS Motors",
           duration: "March 2024 - January 2025 (Client Location)",
+          logo: "https://logo.clearbit.com/tvsmotor.com",
           responsibilities: [
             "Spearheaded the end-to-end development of a key 2-wheeler feature, from concept to production.",
             "Engineered MISRA-compliant code, seamlessly integrating new functionalities into existing CAN/LIN networks.",
@@ -117,6 +120,7 @@ export const resumeData = {
       company: "Pravaig Dynamics Pvt. Ltd.",
       role: "Electronics Engineer",
       duration: "December 2021 - December 2023",
+      logo: "https://logo.clearbit.com/pravaig.com",
       responsibilities: [
         "Architected and developed vehicle software for powertrain, body control, and battery management systems (BMS).",
         "Designed and implemented advanced SoC, SoH, and SoE algorithms for LFP batteries using Kalman Filters.",
@@ -132,6 +136,7 @@ export const resumeData = {
       company: "Falak Startups (RootAir)",
       role: "Engineer Intern",
       duration: "Dec 2019 - Jan 2020",
+      logo: "https://falakse.com/wp-content/uploads/2020/01/Falak-Logo-New-2-e1580301848383.png",
       responsibilities: [
         "Gained proficiency in Eagle CAD software for PCB design and layout.",
         "Contributed to battery management strategies to achieve a 5-month device lifespan for a soil quality sensor.",
@@ -143,6 +148,7 @@ export const resumeData = {
       company: "VETO SWITCHGEARS AND CABLES LIMITED",
       role: "Industrial Trainee",
       duration: "Jun 2019 - Jul 2019",
+      logo: "https://logo.clearbit.com/vetoswitchgears.com",
       responsibilities: [
         "Assisted in the manufacturing processes for electrical components such as MCBs, cables, and switches.",
         "Participated in quality assurance and safety testing, including short-circuit analysis, to ensure compliance with consumer standards.",
