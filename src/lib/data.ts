@@ -170,6 +170,18 @@ export const resumeData = {
       description: "Designed and implemented an IoT-based smart home system using ESP32 microcontrollers for automated lighting and climate control.",
       link: "https://github.com/sunilk15/iot-smart-home",
     },
+    {
+      title: "Real-Time Condition Monitoring Of Transformer Using IOT",
+      description: "A novel approach for smart grid equipment monitoring using cloud computing to provide real-time intelligence on transformer performance and decrease the risk of mechanical defects. (Jan 2021 - May 2021)",
+    },
+    {
+      title: "Automatic Headlight Switcher",
+      description: "Developed a device that automatically switches a car's headlights on at night and adjusts the beam from high to low when another vehicle approaches, enhancing driver safety. (Oct 2019)",
+    },
+    {
+      title: "Wireless Appliance Communicator",
+      description: "Created a device to remotely control home appliances like fans and lights. Key learnings included working with relays and integrating various sensors with Arduino. (Feb 2018 - Apr 2018)",
+    },
   ],
   coCurricularActivities: [
     {
@@ -187,11 +199,19 @@ export const resumeData = {
     }
   ],
   certifications: [
-    "Fundamentals of Project Planning and Management",
-    "EV Power train and Embedded Systems",
-    "Vehicle Design and Development",
-    "AUTOSAR Architecture (Udemy)",
-    "Self-Driving Car Engineering (Udemy, Applied Deep Learning)",
+    "Autosar Architecture (Udemy)",
+    "Ansys (Internshala)",
+    "LabVIEW (Internshala)",
+    "An Introduction to the Controller Area Network (CAN) Bus (Udemy)",
+    "Crash Course on Python By Google (Coursera)",
+    "FPGA Development (LinkedIn)",
+    "Internet of Things and Embedded Systems (Coursera)",
+    "MATLAB (LinkedIn)",
+    "Industrial Automation (LinkedIn)",
+    "Fundamentals of Project Planning and Management (Coursera)",
+    "Business Intelligence (Aaruush, SRM University)",
+    "Program Designing (KJP automation)",
+    "HackTrack (Aaruush, SRM University)",
   ],
 };
 
