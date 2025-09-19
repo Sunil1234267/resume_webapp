@@ -129,25 +129,23 @@ export const resumeData = {
   ],
   internships: [
     {
-      company: "Bosch Global Software Technologies",
-      role: "Software Engineering Intern",
-      duration: "June 2020 - August 2020",
+      company: "Falak Startups (RootAir)",
+      role: "Engineer Intern",
+      duration: "Dec 2019 - Jan 2020",
       responsibilities: [
-        "Developed and implemented a Python-based tool for automated data parsing and analysis from vehicle logs.",
-        "Assisted in the validation of embedded software components for automotive control units.",
-        "Contributed to the creation of test scripts and documentation for new features.",
-        "Gained hands-on experience with CAN communication protocols and diagnostic tools.",
+        "Gained proficiency in Eagle CAD software for PCB design and layout.",
+        "Contributed to battery management strategies to achieve a 5-month device lifespan for a soil quality sensor.",
+        "Programmed and tested on STM32 microcontrollers, focusing on power efficiency and performance.",
+        "Adapted to the work culture of an international startup incubator in Cairo, Egypt.",
       ],
     },
     {
-      company: "Tata Motors",
-      role: "Automotive Engineering Intern",
-      duration: "May 2019 - July 2019",
+      company: "VETO SWITCHGEARS AND CABLES LIMITED",
+      role: "Industrial Trainee",
+      duration: "Jun 2019 - Jul 2019",
       responsibilities: [
-        "Participated in the design and testing phases of electric vehicle (EV) powertrain components.",
-        "Conducted performance analysis on battery management systems (BMS) and charging infrastructure.",
-        "Collaborated with senior engineers on fault diagnosis and troubleshooting of vehicle electrical systems.",
-        "Prepared technical reports and presentations on project progress and findings.",
+        "Assisted in the manufacturing processes for electrical components such as MCBs, cables, and switches.",
+        "Participated in quality assurance and safety testing, including short-circuit analysis, to ensure compliance with consumer standards.",
       ],
     },
   ],
@@ -175,20 +173,18 @@ export const resumeData = {
   ],
   coCurricularActivities: [
     {
-      title: "Robotics Club Lead",
-      description: "Led a team of 10+ students in designing, building, and programming autonomous robots for inter-university competitions.",
-      duration: "2019 - 2021",
+      title: "Committee Head, Aaruush Techno-Management Fest",
+      description: "As a key organizer for one of India's largest techno-management fests, I managed workshops and events for diverse engineering departments. This high-pressure role involved coordinating activities for over 5,000 students, demanding continuous brainstorming, on-the-spot problem-solving, and effective teamwork to ensure the event's success.",
+      duration: "Dec 2017 - Sep 2019",
     },
+  ],
+  volunteering: [
     {
-      title: "Hackathon Participant & Winner",
-      description: "Awarded 1st place in the university-wide hackathon for developing an IoT-based smart irrigation system prototype.",
-      duration: "October 2020",
-    },
-    {
-      title: "Technical Paper Presentation",
-      description: "Presented a research paper on 'Advanced Battery Management Systems for Electric Vehicles' at the National Engineering Symposium.",
-      duration: "March 2021",
-    },
+      title: "Corporate Strategy and Implementation (CSI) Volunteer",
+      organization: "Aaruush, SRM University",
+      duration: "Jul 2017 - Dec 2017",
+      description: "Contributed to social service initiatives for one of India's largest techno-management fests. My role involved strategic planning and implementation of outreach programs, requiring adaptability and quick problem-solving to engage with the community and ensure the success of our social campaigns.",
+    }
   ],
   certifications: [
     "Fundamentals of Project Planning and Management",
@@ -222,6 +218,7 @@ export const iconMap = {
   email: Mail,
   linkedin: Linkedin,
   github: Github,
-  internship: Lightbulb, // Added for internships
-  coCurricular: Sparkles, // Added for co-curricular activities
+  internship: Lightbulb,
+  coCurricular: Sparkles,
+  volunteering: HeartHandshake,
 };

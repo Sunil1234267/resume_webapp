@@ -1,14 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { resumeData } from "@/lib/data";
-import { GraduationCap, Award, Building, Calendar, Check, Sparkles } from "lucide-react";
+import { GraduationCap, Award, Building, Calendar, Check, Sparkles, HeartHandshake } from "lucide-react";
 
-const Education = () => {
+const OtherPage = () => {
   return (
     <section className="section-container animate-fade-in">
       <div className="page-header">
-        <h2 className="page-header-title">Education & Certifications</h2>
+        <h2 className="page-header-title">Education, Certifications & Activities</h2>
         <p className="page-header-description">
-          My academic background and commitment to continuous learning.
+          My academic background, continuous learning, and community involvement.
         </p>
       </div>
       <div className="grid gap-8 md:grid-cols-5">
@@ -84,8 +84,43 @@ const Education = () => {
           </Card>
         </div>
       )}
+
+      {/* Volunteering Section */}
+      {resumeData.volunteering && resumeData.volunteering.length > 0 && (
+        <div className="mt-12">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3">
+                <HeartHandshake className="w-6 h-6 text-primary" />
+                Volunteering & Social Services
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-4">
+                {resumeData.volunteering.map((activity, index) => (
+                  <li key={index} className="flex flex-col sm:flex-row sm:items-start gap-3 text-muted-foreground">
+                    <HeartHandshake className="w-4 h-4 mt-1 text-primary flex-shrink-0" />
+                    <div>
+                      <h3 className="font-semibold text-base text-foreground">{activity.title}</h3>
+                       <p className="text-sm text-muted-foreground flex items-center gap-2 mt-1">
+                        <Building className="w-4 h-4" /> {activity.organization}
+                      </p>
+                      <p className="text-sm mt-2">{activity.description}</p>
+                      {activity.duration && (
+                        <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
+                          <Calendar className="w-3 h-3" /> {activity.duration}
+                        </p>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </section>
   );
 };
 
-export default Education;
+export default OtherPage;
