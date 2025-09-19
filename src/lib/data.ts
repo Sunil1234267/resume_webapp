@@ -219,7 +219,6 @@ export const navLinks = [
   { href: "/", label: "Home", icon: Home },
   { href: "/about", label: "About", icon: User },
   { href: "/experience", label: "Experience", icon: Briefcase },
-  { href: "/skills", label: "Skills", icon: Code },
   { href: "/projects", label: "Projects", icon: Book },
   { href: "/other", label: "Other", icon: GraduationCap }, // Renamed from Education
   { href: "/contact", label: "Contact", icon: Mail },

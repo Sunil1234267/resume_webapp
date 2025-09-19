@@ -23,8 +23,13 @@ const Home = () => {
           {resumeData.personal.title}
         </h2>
         <p className="max-w-[700px] text-lg text-muted-foreground">
-          Bridging the gap between hardware and software to build intelligent,
-          production-ready systems.
+          Welcome to my digital portfolio. This site offers a comprehensive look
+          into my journey as an Electrical and Electronics Engineer, showcasing
+          my expertise in embedded systems, automotive software, and AI. Explore
+          my professional experience, browse a curated selection of projects,
+          and delve into my skills. Built with a modern tech stack, this
+          interactive resume provides a dynamic overview of my career. Feel free
+          to connect or download my resume for more details.
         </p>
       </div>
 
