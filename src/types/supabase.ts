@@ -8,40 +8,7 @@ export type Json =
 
 export type Database = {
   public: {
-    Tables: {
-      messages: {
-        Row: {
-          content: string
-          created_at: string
-          id: string
-          is_user_message: boolean
-          user_id: string | null
-        }
-        Insert: {
-          content: string
-          created_at?: string
-          id?: string
-          is_user_message?: boolean
-          user_id?: string | null
-        }
-        Update: {
-          content?: string
-          created_at?: string
-          id?: string
-          is_user_message?: boolean
-          user_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "messages_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-    }
+    Tables: {}
     Views: {
       [_ in never]: never
     }
