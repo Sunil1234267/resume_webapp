@@ -47,14 +47,17 @@ const Contact = () => {
     setIsLoading(true);
     setResponseMsg(null);
 
-    const baseUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
-    const url = baseUrl;
+    const url = import.meta.env.VITE_N8N_WEBHOOK_URL;
+    const username = 'n8n-sunil-contact';
+    const password = 'n8n-sunil-contact';
+    const auth = 'Basic ' + btoa(`${username}:${password}`);
 
     try {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': auth,
         },
         body: JSON.stringify({
           Name: name,
@@ -63,16 +66,24 @@ const Contact = () => {
         }),
       });
 
+      const responseText = await response.text();
       let msg = "";
-      try {
-        const data = await response.json();
-        msg = data.message || "Thanks for reaching out. I'll get back to you soon.";
-      } catch {
-        msg = await response.text();
-      }
 
       if (!response.ok) {
-        throw new Error(msg || 'Network response was not ok');
+        try {
+          const errorData = JSON.parse(responseText);
+          msg = errorData.message || responseText;
+        } catch {
+          msg = responseText || 'Network response was not ok';
+        }
+        throw new Error(msg);
+      }
+
+      try {
+        const data = JSON.parse(responseText);
+        msg = data.message || "Thanks for reaching out. I'll get back to you soon.";
+      } catch {
+        msg = responseText || "Thanks for reaching out. I'll get back to you soon.";
       }
 
       setResponseMsg(msg);
