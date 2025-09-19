@@ -28,7 +28,7 @@ export const resumeData = {
       "A dynamic Electrical and Electronics Engineer with a passion for innovation and a proven track record in the automotive industry. My expertise lies in developing and testing cutting-edge software, from powertrain components to advanced driver-assistance systems. I thrive in collaborative environments, leveraging a research-oriented mindset and strong problem-solving skills to turn complex requirements into robust, production-ready solutions. I am now seeking to apply my skills in AI agent development and system integration to new and exciting challenges.",
     contact: {
       phone: "", // Phone number removed as requested
-      email: "contact@sunilkhatri.info",
+      email: "sunilkhatri15@gmail.com",
       location: "Ajmer, IN",
     },
     social: {
