@@ -69,7 +69,7 @@ const Experience = () => {
         </p>
       </div>
       <motion.div
-        className="relative pl-8 border-l-2 border-primary/20 mb-16"
+        className="relative pl-6 sm:pl-8 border-l-2 border-primary/20 mb-16"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -78,15 +78,15 @@ const Experience = () => {
           <motion.div key={index} className="mb-12" variants={itemVariants}>
             <div className="absolute w-6 h-6 bg-primary rounded-full -left-3 border-4 border-background" />
             <motion.div
-              className="p-6 rounded-lg shadow-md bg-card border transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10"
+              className="p-4 sm:p-6 rounded-lg shadow-md bg-card border transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10"
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h3 className="text-xl font-bold text-primary flex items-center gap-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-primary flex items-center gap-2">
                     <Briefcase className="w-5 h-5" /> {job.role}
                   </h3>
-                  <h4 className="text-lg font-semibold text-foreground mt-1 flex items-center gap-2">
+                  <h4 className="text-base sm:text-lg font-semibold text-foreground mt-1 flex items-center gap-2">
                     <Building className="w-5 h-5" /> {job.company}
                   </h4>
                 </div>
@@ -117,7 +117,7 @@ const Experience = () => {
                         alt={client.name}
                       />
                     </div>
-                    <ul className="mt-2 space-y-2 list-inside pl-6">
+                    <ul className="mt-2 space-y-2 list-inside pl-2 sm:pl-6">
                       {client.responsibilities.map((resp, rIndex) => (
                         <li
                           key={rIndex}
@@ -157,7 +157,7 @@ const Experience = () => {
         </p>
       </div>
       <motion.div
-        className="relative pl-8 border-l-2 border-primary/20"
+        className="relative pl-6 sm:pl-8 border-l-2 border-primary/20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -166,15 +166,15 @@ const Experience = () => {
           <motion.div key={index} className="mb-12" variants={itemVariants}>
             <div className="absolute w-6 h-6 bg-primary rounded-full -left-3 border-4 border-background" />
             <motion.div
-              className="p-6 rounded-lg shadow-md bg-card border transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10"
+              className="p-4 sm:p-6 rounded-lg shadow-md bg-card border transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10"
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h3 className="text-xl font-bold text-primary flex items-center gap-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-primary flex items-center gap-2">
                     <Lightbulb className="w-5 h-5" /> {internship.role}
                   </h3>
-                  <h4 className="text-lg font-semibold text-foreground mt-1 flex items-center gap-2">
+                  <h4 className="text-base sm:text-lg font-semibold text-foreground mt-1 flex items-center gap-2">
                     <Building className="w-5 h-5" /> {internship.company}
                   </h4>
                 </div>
