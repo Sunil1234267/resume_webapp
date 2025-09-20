@@ -157,6 +157,11 @@ export const resumeData = {
   ],
   projects: [
     {
+      title: "Lean Angle Sensor",
+      description: "Developed and deployed lean angle sensor using sensor fusion techniques, for motorcycle TVS Apache rtr310. Tested in dynamic environment, from hardware planning to software implementation.",
+      link: "https://github.com/sunilk15",
+    },
+    {
       title: "AI Agent for Resume Analysis",
       description: "Developed an AI agent using N8N to parse and analyze resumes, extracting key skills and experience for job matching.",
       link: "https://github.com/sunilk15/ai-resume-analyzer",
