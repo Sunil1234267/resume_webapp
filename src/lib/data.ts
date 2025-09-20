@@ -87,12 +87,12 @@ export const resumeData = {
     {
       company: "KPIT",
       role: "Sr. Software Engineer",
-      duration: "March 2024 - Present",
+      duration: "March 2024 - August 2024",
       logo: "https://logo.clearbit.com/kpit.com",
       clients: [
         {
           name: "Mercedes-Benz",
-          duration: "February 2025 - Present",
+          duration: "February 2025 - August 2024",
           logo: "https://logo.clearbit.com/mercedes-benz.com",
           responsibilities: [
             "Executing comprehensive MIL/SIL testing to validate software against stringent requirements.",
