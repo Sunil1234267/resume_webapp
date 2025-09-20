@@ -6,13 +6,82 @@ import {
   FileDown,
   Linkedin,
   Github,
+  Loader2,
 } from "lucide-react";
 import { HomeTabs } from "@/components/home/HomeTabs";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Sphere, MeshDistortMaterial } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const Home = () => {
+  const { toast } = useToast();
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const handleDownload = async () => {
+    setIsDownloading(true);
+    const url = import.meta.env.VITE_N8N_WEBHOOK_URL;
+
+    if (!url) {
+      toast({
+        title: "Configuration Error",
+        description: "The webhook URL is not configured.",
+        variant: "destructive",
+      });
+      setIsDownloading(false);
+      return;
+    }
+
+    const username = 'n8n-sunil-contact';
+    const password = 'n8n-sunil-contact';
+    const auth = 'Basic ' + btoa(`${username}:${password}`);
+
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Authorization': auth,
+        },
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        let errorMessage = 'Failed to fetch download link.';
+        try {
+          const errorJson = JSON.parse(errorText);
+          errorMessage = errorJson.message || errorMessage;
+        } catch (e) {
+          // Not a JSON error, use the text
+          if(errorText) errorMessage = errorText;
+        }
+        throw new Error(errorMessage);
+      }
+
+      const data = await response.json();
+      const downloadLink = data.downloadLink;
+
+      if (!downloadLink) {
+        throw new Error("Download link not found in the response.");
+      }
+
+      const link = document.createElement('a');
+      link.href = downloadLink;
+      link.setAttribute('download', 'Sunil_Khatri_Resume.pdf');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+    } catch (error) {
+      toast({
+        title: "Download Failed",
+        description: error instanceof Error ? error.message : "An unknown error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
   return (
     <section className="section-container grid md:grid-cols-2 items-center justify-center gap-12">
       <div className="flex flex-col items-center md:items-start gap-4 text-center md:text-left">
@@ -27,6 +96,7 @@ const Home = () => {
           into my journey as an Electrical and Electronics Engineer, showcasing
           my expertise in embedded systems, automotive software, and AI. Explore
           my professional experience, browse a curated selection of projects,
+
           and delve into my skills. Built with a modern tech stack, this
           interactive resume provides a dynamic overview of my career. Feel free
           to connect or download my resume for more details.
@@ -61,11 +131,24 @@ const Home = () => {
             Contact Me <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </Link>
-        <a href="/sunil_khatri_resume.pdf" download>
-          <Button size="lg" variant="outline" className="w-full sm:w-auto">
-            Download Resume <FileDown className="ml-2 h-4 w-4" />
-          </Button>
-        </a>
+        <Button
+          size="lg"
+          variant="outline"
+          className="w-full sm:w-auto"
+          onClick={handleDownload}
+          disabled={isDownloading}
+        >
+          {isDownloading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Preparing...
+            </>
+          ) : (
+            <>
+              Download Resume <FileDown className="ml-2 h-4 w-4" />
+            </>
+          )}
+        </Button>
         <div className="flex items-center gap-2">
           <a
             href={resumeData.personal.social.linkedin}
