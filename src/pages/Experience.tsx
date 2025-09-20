@@ -178,10 +178,7 @@ const Experience = () => {
                     <Building className="w-5 h-5" /> {internship.company}
                   </h4>
                 </div>
-                <LogoContainer
-                  logo={internship.logo}
-                  alt={internship.company}
-                />
+                {/* LogoContainer removed from here */}
               </div>
               <div className="text-sm text-muted-foreground font-medium flex items-center gap-2 mb-4">
                 <Calendar className="w-4 h-4" /> {internship.duration}
