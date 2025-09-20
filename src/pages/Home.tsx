@@ -46,30 +46,47 @@ const Home = () => {
 
       if (!response.ok) {
         const errorText = await response.text();
-        let errorMessage = 'Failed to fetch download link.';
+        let errorMessage = 'Failed to fetch the resume.';
         try {
+          // If the error response is JSON, try to parse a message from it
           const errorJson = JSON.parse(errorText);
           errorMessage = errorJson.message || errorMessage;
         } catch (e) {
-          // Not a JSON error, use the text
+          // Otherwise, use the raw text
           if(errorText) errorMessage = errorText;
         }
         throw new Error(errorMessage);
       }
 
-      const data = await response.json();
-      const downloadLink = data.downloadLink;
-
-      if (!downloadLink) {
-        throw new Error("Download link not found in the response.");
-      }
-
+      // The response is the file itself after the redirect
+      const blob = await response.blob();
+      
+      // Create a temporary URL for the blob
+      const downloadUrl = window.URL.createObjectURL(blob);
+      
+      // Create a link element to trigger the download
       const link = document.createElement('a');
-      link.href = downloadLink;
-      link.setAttribute('download', 'Sunil_Khatri_Resume.pdf');
+      link.href = downloadUrl;
+      
+      // Try to get filename from Content-Disposition header, otherwise fallback
+      const contentDisposition = response.headers.get('content-disposition');
+      let filename = 'Sunil_Khatri_Resume.pdf'; // Default filename
+      if (contentDisposition) {
+        const filenameMatch = contentDisposition.match(/filename="?(.+)"?/);
+        if (filenameMatch && filenameMatch.length > 1) {
+          filename = filenameMatch[1];
+        }
+      }
+      
+      link.setAttribute('download', filename);
+      
+      // Append to the DOM, trigger the click, and then remove it
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      
+      // Clean up the blob URL
+      window.URL.revokeObjectURL(downloadUrl);
 
     } catch (error) {
       toast({
