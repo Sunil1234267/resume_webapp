@@ -12,6 +12,7 @@ const Experience = lazy(() => import("./pages/Experience"));
 const Projects = lazy(() => import("./pages/Projects"));
 const Other = lazy(() => import("./pages/Other"));
 const Contact = lazy(() => import("./pages/Contact"));
+const Chatbot = lazy(() => import("./pages/Chatbot"));
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -25,6 +26,7 @@ const AnimatedRoutes = () => {
           <Route path="projects" element={<PageWrapper><Suspense fallback={<Loader />}><Projects /></Suspense></PageWrapper>} />
           <Route path="other" element={<PageWrapper><Suspense fallback={<Loader />}><Other /></Suspense></PageWrapper>} />
           <Route path="contact" element={<PageWrapper><Suspense fallback={<Loader />}><Contact /></Suspense></PageWrapper>} />
+          <Route path="chatbot" element={<PageWrapper><Suspense fallback={<Loader />}><Chatbot /></Suspense></PageWrapper>} />
         </Route>
       </Routes>
     </AnimatePresence>

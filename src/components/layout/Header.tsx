@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { navLinks } from "@/lib/data";
 import { ModeToggle } from "@/components/theme/ModeToggle";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Code2 } from "lucide-react";
+import { Menu, X, Code2, Bot } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const Header = () => {
@@ -61,6 +61,12 @@ const Header = () => {
         <nav className="hidden md:flex items-center space-x-1">{renderNavLinks()}</nav>
 
         <div className="flex flex-1 items-center justify-end space-x-4">
+          <NavLink to="/chatbot">
+            <Button variant="ghost" size="icon" className="relative">
+              <Bot className="h-4 w-4" />
+              <span className="sr-only">AI Assistant</span>
+            </Button>
+          </NavLink>
           <ModeToggle />
           <div className="md:hidden">
             <Button variant="ghost" size="icon" onClick={toggleMenu}>
