@@ -40,6 +40,12 @@ const Contact = () => {
       value: "Connect with me",
       href: resumeData.personal.social.linkedin,
     },
+    {
+      icon: iconMap.github,
+      label: "GitHub",
+      value: "View my code",
+      href: resumeData.personal.social.github,
+    },
   ].filter(detail => detail.value);
 
   const handleSubmit = async (e: FormEvent) => {

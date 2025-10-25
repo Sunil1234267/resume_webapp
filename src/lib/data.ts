@@ -7,7 +7,6 @@ import {
   User,
   Linkedin,
   Github,
-  Code,
   Book,
   HeartHandshake,
   Building,
@@ -33,7 +32,7 @@ export const resumeData = {
     },
     social: {
       linkedin: "https://www.linkedin.com/in/sunilk15/",
-      github: "https://github.com/",
+      github: "https://github.com/Sunil1234267",
     },
   },
   languages: ["English (Fluent)", "Hindi (Native)"],
@@ -87,12 +86,12 @@ export const resumeData = {
     {
       company: "KPIT",
       role: "Sr. Software Engineer",
-      duration: "March 2024 - August 2025",
+      duration: "March 2024 - Present",
       logo: "https://logo.clearbit.com/kpit.com",
       clients: [
         {
           name: "Mercedes-Benz",
-          duration: "February 2025 - August 2025",
+          duration: "February 2025 - Present",
           logo: "https://logo.clearbit.com/mercedes-benz.com",
           responsibilities: [
             "Executing comprehensive MIL/SIL testing to validate software against stringent requirements.",
@@ -138,10 +137,10 @@ export const resumeData = {
       duration: "Dec 2019 - Jan 2020",
       logo: "https://falakse.com/wp-content/uploads/2020/01/Falak-Logo-New-2-e1580301848383.png",
       responsibilities: [
-        "Gained proficiency in Eagle CAD software for PCB design and layout.",
-        "Contributed to battery management strategies to achieve a 5-month device lifespan for a soil quality sensor.",
-        "Programmed and tested on STM32 microcontrollers, focusing on power efficiency and performance.",
-        "Adapted to the work culture of an international startup incubator in Cairo, Egypt.",
+        "Gained proficiency in Eagle CAD software for PCB design and layout, contributing to IoT sensor development.",
+        "Contributed to battery management strategies to achieve a 5-month device lifespan for a soil quality sensor using advanced power optimization techniques.",
+        "Programmed and tested STM32 microcontrollers, focusing on power efficiency and performance optimization for IoT applications.",
+        "Adapted to the work culture of an international startup incubator in Cairo, Egypt, working with diverse international teams.",
       ],
     },
     {
@@ -158,40 +157,43 @@ export const resumeData = {
   projects: [
     {
       title: "Lean Angle Sensor",
-      description: "Developed and deployed lean angle sensor using sensor fusion techniques, for motorcycle TVS Apache rtr310. Tested in dynamic environment, from hardware planning to software implementation.",
-      link: "https://github.com/sunilk15",
+      description: "Developed and deployed lean angle sensor using sensor fusion techniques, for motorcycle TVS Apache RTR 310. Tested in dynamic environment, from hardware planning to software implementation.",
+      link: "https://github.com/Sunil1234267",
     },
     {
       title: "AI Agent for Resume Analysis",
       description: "Developed an AI agent using N8N to parse and analyze resumes, extracting key skills and experience for job matching.",
-      link: "https://github.com/sunilk15/ai-resume-analyzer",
+      link: "https://github.com/Sunil1234267",
     },
     {
       title: "Automotive Embedded System Simulator",
       description: "Created a Simulink-based simulator for testing automotive embedded software components, including CAN communication and sensor fusion.",
-      link: "https://github.com/sunilk15/automotive-simulator",
+      link: "https://github.com/Sunil1234267",
     },
     {
       title: "Full-stack Portfolio Website",
       description: "Built a personal portfolio website using React, TypeScript, and Tailwind CSS to showcase projects and experience.",
-      link: "https://github.com/sunilk15/portfolio-website",
+      link: "https://github.com/Sunil1234267/resume_webapp - Copy",
     },
     {
       title: "IoT Smart Home System",
       description: "Designed and implemented an IoT-based smart home system using ESP32 microcontrollers for automated lighting and climate control.",
-      link: "https://github.com/sunilk15/iot-smart-home",
+      link: "https://github.com/Sunil1234267",
     },
     {
-      title: "Real-Time Condition Monitoring Of Transformer Using IOT",
-      description: "A novel approach for smart grid equipment monitoring using cloud computing to provide real-time intelligence on transformer performance and decrease the risk of mechanical defects. (Jan 2021 - May 2021)",
+      title: "Real-Time Condition Monitoring Of Transformer Using IoT",
+      description: "A novel approach for smart grid equipment monitoring using cloud computing to provide real-time intelligence on transformer performance and decrease the risk of mechanical defects. Implemented IoT sensors and data analytics for predictive maintenance. (Jan 2021 - May 2021)",
+      link: "https://github.com/Sunil1234267",
     },
     {
       title: "Automatic Headlight Switcher",
-      description: "Developed a device that automatically switches a car's headlights on at night and adjusts the beam from high to low when another vehicle approaches, enhancing driver safety. (Oct 2019)",
+      description: "Developed an intelligent automotive safety device that automatically switches a car's headlights on at night and adjusts the beam from high to low when another vehicle approaches, enhancing driver safety and reducing glare accidents. (Oct 2019)",
+      link: "https://github.com/Sunil1234267",
     },
     {
       title: "Wireless Appliance Communicator",
-      description: "Created a device to remotely control home appliances like fans and lights. Key learnings included working with relays and integrating various sensors with Arduino. (Feb 2018 - Apr 2018)",
+      description: "Created a wireless IoT device to remotely control home appliances like fans and lights using Arduino and wireless communication protocols. Key learnings included working with relays, sensor integration, and wireless communication. (Feb 2018 - Apr 2018)",
+      link: "https://github.com/Sunil1234267",
     },
   ],
   coCurricularActivities: [

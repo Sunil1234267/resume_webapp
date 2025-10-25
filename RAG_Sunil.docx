@@ -1,0 +1,136 @@
+1. Personal Summary 
+Sunil Khatri is a results-oriented Electrical and Electronics Engineer with 4+ years of automotive  software development experience, specializing in embedded systems, AI/ML integration, and project  coordination. Proven track record in leading cross-functional teams to deliver complex solutions from  concept to production across major automotive OEMs including KPIT Technologies, Pravaig  Dynamics, TVS Motors, and Mercedes-Benz. Expert in the full software development lifecycle  (SDLC), including requirements management, system integration, validation, and agile/waterfall  project management. Combines strong theoretical grounding with practical expertise in firmware  development, system simulation, and workflow automation. 
+2. Education 
+Bachelor of Technology (B.Tech) in Electrical & Electronics Engineering 
+SRM Institute of Science and Technology (SRM University), Chennai 
+Duration: 2017 – 2021 
+3. Professional Experience 
+3.1 Senior Software Engineer, KPIT Technologies (March 2024 – August 2025) Mercedes-Benz Project (ODC) – February 2025 to August 2025 
+• Led SIL/MIL software testing initiatives based on project requirements using JIRA for task  management and tracking. 
+• Conducted Time-Partition Testing (TPT) and Regression Testing to ensure software  robustness and reliability. 
+• Managed software versions and configurations using SVN, PVCS, and GitHub. 
+• Collaborated with global teams to align testing strategies with Mercedes-Benz quality  standards. 
+• Ensured compliance with automotive software quality standards and traceability  requirements. 
+TVS Motors Project (Client Location) – March 2024 to January 2025 
+• Led end-to-end development and implementation of a new 2-wheeler feature from  requirements gathering to production release. 
+• Managed system development using MATLAB/Simulink, Microsoft Visual Studio Code,  Renesas microcontrollers, and ESP32. 
+• Implemented RTOS (Real-Time Operating System) for multi-threaded application execution. 
+• Ensured code compliance with MISRA C standards and successfully integrated the feature  into existing CAN and LIN bus architecture. 
+• Directed validation process using debugging tools: logic analyzers, CANalyzer, and  oscilloscopes.
+• Conducted system integration testing and documented validation results for production  approval. 
+3.2 Electronics Engineer, Pravaig Dynamics Pvt. Ltd. (December 2021 – December 2023) 
+• Developed embedded software for TMS570, STM32, ESP32, and Jetson  Nano microcontrollers for automotive applications. 
+• Designed and implemented application software for: 
+• Battery Management System (BMS) 
+• Body Control Module (BCM) 
+• Vehicle Control Unit (VCU) 
+• Utilized Embedded C and MATLAB/Simulink for Model-Based Software Engineering (MBSE). • Debugged systems using logic analyzers, CAN analyzers, and oscilloscopes. • Developed CAN matrix using Vector CANDB+. 
+• Integrated and tested individual hardware components with embedded software. • Integrated and calibrated Digital Signal Processing (DSP) systems to vehicle architecture. • Maintained cross-departmental communication for product fitment and validation. 
+• Led a team of 2 engineers for electrification of existing ICE vehicle (software, electrical, and  electronics). 
+• Applied V-model lifecycle and SDLC methodologies for development and problem-solving. 
+• Developed and implemented SoC (State of Charge), SoH (State of Health), and SoE (State of  Energy) algorithms using Kalman Filters for LFP batteries. 
+• Made significant contributions to EV software architecture and electrical system design. 3.3 Embedded Systems Engineer Intern, RootAir LTD (December 2019 – January 2020) 
+• Developed an IoT-enabled air-quality monitoring prototype using ESP32, gas, Ph sensors,  Wi-Fi. 
+• Designed PCB layout; optimized firmware for low-power operation. 
+• Validated sensor readings across varying environmental conditions. 
+• Collaborated with cross-functional teams to integrate data visualization dashboards. 
+4. Academic Projects 
+4.1 Dynamometer Data Analysis 
+• Processed engine dynamometer signals: torque, RPM, and power curves; implemented  filtering algorithms in MATLAB. 
+• Generated performance reports and visualizations for engine test cycles.
+4.2 EIPP002 Vehicle Control Electronics Documentation 
+• Authored detailed technical documentation on ECU communication protocols and electrical  architecture. 
+• Analyzed signal integrity and fault tolerance in automotive networks. 
+4.3 EIPP007 EV Technical Report 
+• Documented inverter topologies, BMS algorithms, and ISO 26262 safety considerations for  electric vehicles. 
+• Conducted comparative analysis of SiC vs. Si MOSFET Transistor, Relay performance under  high-temperature conditions. 
+5. Personal & Open-Source Projects 
+5.1 AI/ML & Automation Projects 
+ATS Resume Builder with n8n 
+• Designed an n8n workflow that extracts job descriptions from Google Drive (PDF, DOC, JPG). • Parsed job requirements using AI agents and generated tailored resumes under 300 words. • Integrated Google Sheets for application tracking and status updates. 
+Local LLM Deployment 
+• Deployed Llama 3.1 8B quantized model on RTX 4060 (8GB) using Ollama and Docker. • Resolved port binding and NVIDIA_VISIBLE_DEVICES configuration errors. • Optimized memory usage via FlashAttention; benchmarked inference speed. • Evaluated alternatives (GPTQ, Bitsandbytes) for 128k context windows. n8n Workflow Automation 
+• Slack Chatbot: Built webhook-driven chatbot with Gemini AI; stored interactions  in Supabase; generated summary CSVs. 
+5.2 IoT & Hardware Projects 
+Bluetooth Thermal Printer Integration 
+• Integrated Fronix 3" Bluetooth thermal printer with Raspberry Pi 4. 
+• Converted HTML receipts to ESC/POS format via Python. 
+• Created POST endpoints under Nginx; automated printing with systemd service. WS2811 LED Controller Development 
+• Programmed custom SPI firmware for SP107E LED controllers. 
+• Implemented dynamic lighting patterns and web-based control using Flask.
+Smart Home Automation 
+• Built smart home servers using Raspberry Pi. 
+• Developed full-stack websites to automate manual tasks using AI coding tools. 5.3 Hardware Troubleshooting 
+BMW G310R Motorcycle Diagnostics 
+• Tested ignition coil resistance (500Ω), starter motor current draw. 
+• Identified spark plug misfires; recommended maintenance schedule. 
+6. Technical Skills 
+6.1 Core Embedded & Automotive Skills 
+• Programming Languages: Embedded C, C++, Python, MATLAB/Simulink 
+• Microcontrollers: TMS570, STM32, ESP32, Renesas, Jetson Nano, ARM Cortex-M, Arduino,  TI, SPC5 
+• RTOS: FreeRTOS 
+• Automotive Protocols: CAN, LIN, UDS 
+• Tools & Standards: MISRA C, AUTOSAR basics, ISO 26262 fundamentals 
+• Development Tools: Vector CANDB+, CANalyzer, CANoe, logic analyzers, oscilloscopes, Code  Composer studio, Visual Studio Code, Arduino IDE 
+• MBSE Tools: MATLAB, Simulink, Embedded Coder, TargetLink, TPT (Time Partition Testing) • Version Control: SVN, PVCS, GitHub, Git 
+6.2 Software Development & Testing 
+• SDLC Methodologies: V-model, Agile, Waterfall 
+• Testing: SIL (Software-in-the-Loop), MIL (Model-in-the-Loop), regression testing, time partition testing 
+• Requirements Management: JIRA, requirements traceability 
+• Debugging: Logic analyzers, oscilloscopes, CAN analyzers 
+6.3 AI/ML & Automation 
+• AI Agents & Workflows: n8n, agentic AI workflows, prompt engineering 
+• LLM Deployment: Ollama, Docker, GPU optimization (RTX 4060), quantization (GPTQ,  INT4/INT8) 
+• Full-Stack Development: React, Vite, Flask, HTML/CSS, JavaScript 
+• Databases: Supabase, Google Sheets integration, vector databases (Pinecone)
+• IoT & Automation: Raspberry Pi, ESP32, MQTT, HTTP/REST, WebSocket 6.4 Advanced Technical Skills 
+• Battery Management: SoC, SoH, SoE algorithms, Kalman Filters, LFP battery management • System Integration: Vehicle-level testing, rapid prototyping, cross-functional collaboration • Project Management: Scope definition, risk management, cross-functional team leadership 6.5 Additional Tools 
+• Simulation & Analysis: ANSYS Mechanical, FEA, LabVIEW 
+• BI & Visualization: Power BI, Tableau, SQL, data modeling, ETL processes • DevOps: Docker, NVIDIA Docker, Nginx, systemd services, port binding, GPU passthrough • Cybersecurity: Nmap, OpenVAS, basic penetration testing, secure network configuration • Hardware Integration: PCB layout, ESC/POS, UART, SPI, I²C/I2C 
+7. Certifications & Technical Training 
+1. AUTOSAR Architecture – Udemy 
+2. Fundamentals of Project Planning and Management – University of Virginia (Coursera) 
+3. EV Powertrain and Embedded Systems – Autobot Academy, Pune (400 hours, Sept 2021 – Dec 2021) 
+4. Vehicle Design and Development – Certification program 
+5. ANSYS Mechanical (FEA) – 8-week online (Internshala Trainings) 
+• Finite Element Analysis: static structural, thermal, modal, buckling, case studies 6. LabVIEW – 6-week online (Internshala Trainings) 
+• Dataflow programming, VI server, file handling, hardware interfacing, application  deployment 
+7. CAN Bus Fundamentals – Udemy (2 hours) 
+• Arbitration, frame structure, error handling, diagnostics 
+8. Python Programming (Crash Course) – Google (Coursera) 
+• Python basics, OOP, automation scripting 
+9. Introduction to IoT & Embedded Systems – UCI (Coursera) 
+• Microcontrollers, sensors, MQTT, HTTP, cloud integration 
+10. Ethical Hacking Workshop – CSI Hacktrack (Aaruush'17) 
+• Network scanning (Nmap), vulnerability assessment (OpenVAS), PenTest basics
+8. Soft Skills 
+• Cross-Functional Team Leadership: Led engineering teams across software, electrical, and  mechanical domains. 
+• Project Management: Agile/Waterfall methodologies, risk mitigation, scope definition. 
+• Communication & Presentation: Delivered technical workshops; authored comprehensive  documentation; presented to stakeholders. 
+• Mentorship: Guided junior engineers in embedded systems, MATLAB, and testing  methodologies; mentored students in technical workshops. 
+• Problem-Solving: Debugged complex hardware-software integration issues; optimized  algorithms; resolved embedded firmware issues. 
+• Adaptability: Quickly mastered new tools (AUTOSAR, TargetLink, n8n, LLM deployment,  LabVIEW, Ansys) under tight deadlines. 
+• Time Management: Balanced multiple concurrent projects and client engagements;  coordinated training programs and events. 
+• Strategic Thinking: Developed end-to-end automation workflows aligning with business  objectives. 
+• Collaboration: Worked cross-functionally with engineers, researchers, and event  stakeholders. 
+9. Leadership & Event Management 
+• Committee Member, CSR & Corporate Strategy, Aaruush'18 (SRMIST) 
+• Led team of 12 volunteers; planned and executed corporate social responsibility  events. 
+• Partnered with local NGOs to reach 2,000+ beneficiaries. 
+• Workshop Instructor, Business Intelligence Workshop (Aaruush'18) 
+• Designed curriculum; delivered sessions on data modeling, ETL processes, and  dashboard creation. 
+• Taught Power BI and Tableau tools to participants. 
+• Volunteer, CST Team, Aaruush'17 (SRM University) 
+• Supported logistics for 10,000+ attendees; earned Certificate of Appreciation. • Ethical Hacking Participant, CSI Hacktrack (Aaruush'17) 
+• Acquired hands-on experience in network scanning and vulnerability analysis. 10. Achievements & Awards
+• Certificate of Appreciation, Aaruush'18 Committee Member (CSR & Corporate Strategy) • Certificate of Appreciation, Aaruush'18 Business Intelligence Workshop Instructor • Certificate of Appreciation, Aaruush'17 Volunteer (CST Team) 
+• Completion Certificates: ANSYS, LabVIEW, CAN Bus, Python, IoT & Embedded Systems,  Project Management, EV Powertrain, AUTOSAR 
+• Ethical Hacking Participant, CSI Hacktrack (Aaruush'17) 
+• Top Performer, RootAir Internship Project Delivery 
+11. Language Proficiency 
+• English: Professional working proficiency 
+• Hindi: Native fluency 
+12. Interests & Hobbies 
+• Motorcycle Maintenance & Riding: Hands-on mechanical troubleshooting and long-distance  touring in BMW G310R. 
+• Playing Musical Instruments: Passive musician exploring various instruments. 
+• AI/ML Experimentation: Building AI agents, chatbots, and LLM-powered automation  workflows.

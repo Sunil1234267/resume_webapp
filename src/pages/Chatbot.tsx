@@ -136,6 +136,8 @@ const Chatbot = () => {
       
       console.log('Sending request to:', urlWithParams.toString());
       console.log('Request body:', requestBody);
+      console.log('Webhook URL from env:', import.meta.env.VITE_N8N_CHATBOT_WEBHOOK_URL);
+      console.log('Fallback URL from env:', import.meta.env.VITE_N8N_WEBHOOK_URL);
       
       // Create AbortController for timeout handling
       const controller = new AbortController();
@@ -163,6 +165,7 @@ const Chatbot = () => {
       console.log('Response headers:', Object.fromEntries(response.headers.entries()));
       
       if (response.ok) {
+        console.log('Response is OK, status:', response.status);
         try {
           const data = await response.json();
           console.log('Full Response data:', JSON.stringify(data, null, 2));
@@ -264,22 +267,28 @@ const Chatbot = () => {
           setMessages(prev => [...prev, botMessage]);
           return; // Early return to avoid duplicate message creation
         } catch (jsonError) {
-          console.log('JSON parsing failed, trying text response. JSON Error:', jsonError);
+          console.error('JSON parsing failed:', jsonError);
+          console.error('JSON error type:', typeof jsonError);
+          console.error('JSON error message:', jsonError instanceof Error ? jsonError.message : String(jsonError));
+          
+          // Try to get raw response text to see what was actually returned
           try {
-            const textResponse = await response.text();
-            console.log('Raw text response:', textResponse);
-            console.log('Text response length:', textResponse.length);
+            const clonedResponse = response.clone();
+            const responseText = await clonedResponse.text();
+            console.log('Raw response text after JSON parse failure:', responseText);
+            console.log('Response text type:', typeof responseText);
+            console.log('Response text length:', responseText.length);
             
-            if (textResponse && textResponse.trim().length > 0) {
-              botResponse = textResponse.trim();
-              console.log('Using text response as bot response:', botResponse);
+            if (responseText && responseText.trim().length > 0) {
+              // If we got text, use it as the response
+              botResponse = responseText.trim();
+              console.log('Using raw text response as bot response:', botResponse);
             } else {
-              console.log('Text response is empty or whitespace only');
+              botResponse = "The server responded successfully but the response was empty. The n8n workflow completed but returned no data.";
             }
           } catch (textError) {
-            console.error('Both JSON and text parsing failed:');
-            console.error('JSON Error:', jsonError);
-            console.error('Text Error:', textError);
+            console.error('Failed to get text from response:', textError);
+            botResponse = "The server responded successfully but the response format was unexpected. The n8n workflow may be working but returning data in an unexpected format.";
           }
         }
       } else {
@@ -323,6 +332,10 @@ const Chatbot = () => {
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
       console.error('Chat error:', error);
+      console.error('Error type:', typeof error);
+      console.error('Error name:', error instanceof Error ? error.name : 'Unknown');
+      console.error('Error message:', error instanceof Error ? error.message : String(error));
+      console.error('Error stack:', error instanceof Error ? error.stack : 'No stack available');
       
       let errorText = "Sorry, I'm having trouble connecting right now. Please check your internet connection and try again.";
       let toastTitle = "Connection Error";
@@ -333,6 +346,21 @@ const Chatbot = () => {
         errorText = "The request is taking longer than expected (over 5 minutes). The AI might still be processing your request. Please try again or check back later.";
         toastTitle = "Request Timeout";
         toastDescription = "The request timed out after 5 minutes. Please try again.";
+      } else if (error instanceof TypeError) {
+        errorText = "There was an issue processing the response from the server. Please try again.";
+        toastTitle = "Response Processing Error";
+        toastDescription = "Failed to process server response. Please try again.";
+      } else if (error instanceof Error) {
+        // More specific error handling based on error message
+        if (error.message.includes('Failed to fetch')) {
+          errorText = "Network connection failed. Please check your internet connection and try again.";
+          toastTitle = "Network Error";
+          toastDescription = "Unable to reach the server. Please check your connection.";
+        } else if (error.message.includes('JSON')) {
+          errorText = "The server response was not in the expected format. The n8n workflow may be working but returning invalid data.";
+          toastTitle = "Response Format Error";
+          toastDescription = "Server response format issue. Please check the n8n workflow output.";
+        }
       }
       
       const errorMessage: Message = {
