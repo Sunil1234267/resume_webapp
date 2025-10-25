@@ -40,12 +40,6 @@ const Contact = () => {
       value: "Connect with me",
       href: resumeData.personal.social.linkedin,
     },
-    {
-      icon: iconMap.github,
-      label: "GitHub",
-      value: "View my code",
-      href: resumeData.personal.social.github,
-    },
   ].filter(detail => detail.value);
 
   const handleSubmit = async (e: FormEvent) => {
@@ -54,56 +48,188 @@ const Contact = () => {
     setResponseMsg(null);
 
     const url = import.meta.env.VITE_N8N_WEBHOOK_URL;
-    const username = 'n8n-sunil-contact';
-    const password = 'n8n-sunil-contact';
-    const auth = 'Basic ' + btoa(`${username}:${password}`);
+    
+    // Validate that the webhook URL is configured
+    if (!url) {
+      setResponseMsg(null);
+      toast({
+        title: "Configuration Error",
+        description: "Webhook URL is not configured. Please check your environment variables.",
+        variant: "destructive",
+        duration: 5000,
+      });
+      setIsLoading(false);
+      return;
+    }
 
-    const params = new URLSearchParams({
-      Name: name,
-      Email: email,
-      Message: message,
-    });
-    const fullUrl = `${url}?${params.toString()}`;
+    // Validate form fields
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      toast({
+        title: "Validation Error",
+        description: "Please fill in all fields before submitting.",
+        variant: "destructive",
+        duration: 3000,
+      });
+      setIsLoading(false);
+      return;
+    }
+
+    const payload = {
+      name: name.trim(),
+      email: email.trim(),
+      message: message.trim(),
+      timestamp: new Date().toISOString(),
+    };
+
+    console.log('Sending contact form data:', payload);
+    console.log('Webhook URL:', url);
 
     try {
-      const response = await fetch(fullUrl, {
-        method: 'GET',
-        headers: {
-          'Authorization': auth,
-        },
+      // Authentication for n8n webhook - try different approaches
+      const username = import.meta.env.VITE_N8N_USERNAME || 'n8n-sunil-contact';
+      const password = import.meta.env.VITE_N8N_PASSWORD || 'n8n-sunil-contact';
+      
+      // Try different auth methods
+      console.log('Attempting multiple authentication methods...');
+      
+      const params = new URLSearchParams({
+        name: payload.name,
+        email: payload.email,
+        message: payload.message,
+        timestamp: payload.timestamp,
       });
+      const fullUrl = `${url}?${params.toString()}`;
+      
+      let response: Response | null = null;
+      let lastError = '';
+      
+      // Method 1: GET with Basic Auth
+      try {
+        console.log('Method 1: GET with Basic Auth');
+        const auth = 'Basic ' + btoa(`${username}:${password}`);
+        response = await fetch(fullUrl, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Authorization': auth,
+          },
+        });
+        console.log('Method 1 Response status:', response.status);
+        if (response.ok) {
+          console.log('Method 1 succeeded!');
+        } else {
+          lastError = `Method 1 failed: ${response.status} ${response.statusText}`;
+        }
+      } catch (error) {
+        lastError = `Method 1 error: ${error instanceof Error ? error.message : 'Unknown error'}`;
+        console.log(lastError);
+      }
+      
+      // Method 2: GET without auth (if Method 1 failed)
+      if (!response || !response.ok) {
+        try {
+          console.log('Method 2: GET without authentication');
+          response = await fetch(fullUrl, {
+            method: 'GET',
+            headers: {
+              'Accept': 'application/json, text/plain, */*',
+            },
+          });
+          console.log('Method 2 Response status:', response.status);
+          if (response.ok) {
+            console.log('Method 2 succeeded!');
+          } else {
+            lastError = `Method 2 failed: ${response.status} ${response.statusText}`;
+          }
+        } catch (error) {
+          lastError = `Method 2 error: ${error instanceof Error ? error.message : 'Unknown error'}`;
+          console.log(lastError);
+        }
+      }
+      
+      // Method 3: POST with JSON (if previous methods failed)
+      if (!response || !response.ok) {
+        try {
+          console.log('Method 3: POST with JSON and Basic Auth');
+          const auth = 'Basic ' + btoa(`${username}:${password}`);
+          response = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json, text/plain, */*',
+              'Authorization': auth,
+            },
+            body: JSON.stringify(payload),
+          });
+          console.log('Method 3 Response status:', response.status);
+          if (response.ok) {
+            console.log('Method 3 succeeded!');
+          } else {
+            lastError = `Method 3 failed: ${response.status} ${response.statusText}`;
+          }
+        } catch (error) {
+          lastError = `Method 3 error: ${error instanceof Error ? error.message : 'Unknown error'}`;
+          console.log(lastError);
+        }
+      }
+
+      // Check if we have a valid response
+      if (!response) {
+        throw new Error(`All connection methods failed. Last error: ${lastError}`);
+      }
 
       const responseText = await response.text();
+      console.log('Response text:', responseText);
+
       let msg = "";
 
       if (!response.ok) {
         try {
           const errorData = JSON.parse(responseText);
-          msg = errorData.message || responseText;
+          msg = errorData.message || errorData.error || responseText;
         } catch {
-          msg = responseText || 'Network response was not ok';
+          msg = `HTTP ${response.status}: ${response.statusText || responseText || 'Network response was not ok'}`;
         }
         throw new Error(msg);
       }
 
+      // Handle successful response
       try {
         const data = JSON.parse(responseText);
-        msg = data.message || "Thanks for reaching out. I'll get back to you soon.";
+        msg = data.message || data.success || data.result || "Thanks for reaching out! I'll get back to you soon.";
       } catch {
-        msg = responseText || "Thanks for reaching out. I'll get back to you soon.";
+        // If response is not JSON, treat it as success message
+        msg = responseText || "Thanks for reaching out! I'll get back to you soon.";
       }
 
       setResponseMsg(msg);
       setName("");
       setEmail("");
       setMessage("");
-    } catch (error) {
-      setResponseMsg(null);
+
       toast({
-        title: "Uh oh! Something went wrong.",
-        description: error instanceof Error ? error.message : "There was a problem with your request. Please try again.",
+        title: "Message Sent Successfully!",
+        description: "Your message has been delivered. I'll respond as soon as possible.",
+        duration: 5000,
+      });
+
+    } catch (error) {
+      console.error('Contact form submission error:', error);
+      setResponseMsg(null);
+      
+      let errorMessage = "Unknown error occurred";
+      
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        errorMessage = "Network error - please check your internet connection or try again later";
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      
+      toast({
+        title: "Failed to Send Message",
+        description: `Error: ${errorMessage}. Please try again or contact me directly via email.`,
         variant: "destructive",
-        duration: 3000,
+        duration: 7000,
       });
     } finally {
       setIsLoading(false);

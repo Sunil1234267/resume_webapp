@@ -5,10 +5,10 @@ import { Code, Cpu, Car, BrainCircuit } from "lucide-react";
 import { motion } from "framer-motion";
 
 const skillCategories = [
-  { title: "Embedded Systems & Control", icon: Cpu, key: "Embedded Systems & Control" },
+  { title: "Core Embedded & Automotive", icon: Cpu, key: "Core Embedded & Automotive" },
+  { title: "Development & Testing Tools", icon: Car, key: "Development & Testing Tools" },
   { title: "Modeling & Simulation", icon: BrainCircuit, key: "Modeling & Simulation" },
-  { title: "Automotive & Testing", icon: Car, key: "Automotive & Testing" },
-  { title: "Software & AI", icon: Code, key: "Software & AI" },
+  { title: "AI/ML & Modern Technologies", icon: Code, key: "AI/ML & Modern Technologies" },
 ];
 
 const Skills = () => {

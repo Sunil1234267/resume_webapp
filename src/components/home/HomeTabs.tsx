@@ -41,11 +41,14 @@ export function HomeTabs() {
       </TabsContent>
       <TabsContent value="certifications" className="mt-4">
         <ul className="list-disc list-inside space-y-2">
-          {resumeData.certifications.map((cert, index) => (
+          {resumeData.certifications?.map((cert, index) => (
             <li key={index} className="text-muted-foreground text-lg">
-              {cert}
+              <strong>{typeof cert === 'string' ? cert : cert.name}</strong>
+              {typeof cert === 'object' && cert.provider && (
+                <span className="text-sm text-muted-foreground/80"> - {cert.provider}</span>
+              )}
             </li>
-          ))}
+          )) || <li className="text-muted-foreground text-lg">No certifications available</li>}
         </ul>
       </TabsContent>
     </Tabs>

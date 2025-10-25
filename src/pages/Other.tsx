@@ -42,12 +42,17 @@ const OtherPage = () => {
           </CardHeader>
           <CardContent>
             <ul className="space-y-4">
-              {resumeData.certifications.map((cert, index) => (
+              {resumeData.certifications?.map((cert, index) => (
                 <li key={index} className="flex items-start gap-3 text-muted-foreground">
                   <Check className="w-4 h-4 mt-1 text-primary flex-shrink-0" />
-                  <span>{cert}</span>
+                  <div>
+                    <span className="font-medium">{typeof cert === 'string' ? cert : cert.name}</span>
+                    {typeof cert === 'object' && cert.provider && (
+                      <span className="text-sm text-muted-foreground/80 block"> - {cert.provider}</span>
+                    )}
+                  </div>
                 </li>
-              ))}
+              )) || []}
             </ul>
           </CardContent>
         </Card>

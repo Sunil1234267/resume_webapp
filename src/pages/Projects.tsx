@@ -1,8 +1,7 @@
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { resumeData } from "@/lib/data";
 import { motion } from "framer-motion";
-import { Code, Zap, Bot, Home, ExternalLink, Github } from "lucide-react";
+import { Code, Zap, Bot, Home } from "lucide-react";
 
 const iconMap = [
   <Code className="w-8 h-8 text-primary" />,
@@ -60,27 +59,6 @@ const Projects = () => {
                 <CardTitle>{project.title}</CardTitle>
                 <CardDescription className="pt-2">{project.description}</CardDescription>
               </CardHeader>
-              {project.link && (
-                <CardContent className="pt-0">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full"
-                    asChild
-                  >
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2"
-                    >
-                      <Github className="w-4 h-4" />
-                      View Project
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  </Button>
-                </CardContent>
-              )}
             </Card>
           </motion.div>
         ))}
