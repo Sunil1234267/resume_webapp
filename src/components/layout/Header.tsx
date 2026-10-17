@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { navLinks } from "@/lib/data";
-import { ModeToggle } from "@/components/theme/ModeToggle";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/ui/Logo";
 import { Menu, X, Sparkles, Send } from "lucide-react";
@@ -78,8 +77,6 @@ const Header = () => {
                 <span>Connect</span>
               </Button>
             </Link>
-
-            <ModeToggle />
 
             {/* Mobile Menu Toggle Button */}
             <div className="lg:hidden">
