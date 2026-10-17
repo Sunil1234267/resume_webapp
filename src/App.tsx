@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Layout from "./components/layout/Layout";
+import SeoManager from "./components/layout/SeoManager";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Experience from "./pages/Experience";
@@ -23,6 +24,7 @@ const ScrollToTop = () => {
 const App = () => {
   return (
     <>
+      <SeoManager />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
