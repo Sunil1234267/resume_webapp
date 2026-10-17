@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="skBg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#16192B"/>
+      <stop offset="70%" stop-color="#0B0C14"/>
+      <stop offset="100%" stop-color="#05060A"/>
+    </radialGradient>
+
+    <!-- Papaya Flame Gradient for 'S' & Upper 'K' -->
+    <linearGradient id="skPapaya" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFAA00"/>
+      <stop offset="45%" stop-color="#FF8000"/>
+      <stop offset="100%" stop-color="#FF3700"/>
+    </linearGradient>
+
+    <!-- Cyan Electric Gradient for Lower 'K' & Accents -->
+    <linearGradient id="skCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#70F3FF"/>
+      <stop offset="50%" stop-color="#00E5FF"/>
+      <stop offset="100%" stop-color="#0088FF"/>
+    </linearGradient>
+
+    <!-- Shield Border Gradient -->
+    <linearGradient id="skShieldBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF8000" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="#FFAA00" stop-opacity="0.5"/>
+      <stop offset="70%" stop-color="#00E5FF" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FF3700" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <!-- Ambient Glow Filter -->
+    <filter id="skGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Subtle Drop Shadow -->
+    <filter id="skShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.7"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Hex Shield Body -->
+  <path
+    d="M 48,6 C 49.3,5.3 50.7,5.3 52,6 L 86,24.5 C 89,26 91,29 91,32.5 L 91,66 C 91,69.5 89,72.5 86,74 L 52,92.5 C 50.7,93.2 49.3,93.2 48,92.5 L 14,74 C 11,72.5 9,69.5 9,66 L 9,32.5 C 9,29 11,26 14,24.5 Z"
+    fill="url(#skBg)"
+    stroke="url(#skShieldBorder)"
+    stroke-width="1.8"
+    filter="url(#skShadow)"
+  />
+
+  <!-- Inner Telemetry Track Contour -->
+  <path
+    d="M 48.5,12 C 49.4,11.5 50.6,11.5 51.5,12 L 81,28 C 83.5,29.3 85,31.8 85,34.5 L 85,63.5 C 85,66.2 83.5,68.7 81,70 L 51.5,86 C 50.6,86.5 49.4,86.5 48.5,86 L 19,70 C 16.5,68.7 15,66.2 15,63.5 L 15,34.5 C 15,31.8 16.5,29.3 19,28 Z"
+    fill="none"
+    stroke="#00E5FF"
+    stroke-width="0.8"
+    stroke-opacity="0.25"
+    stroke-dasharray="3 3"
+  />
+
+  <!-- Telemetry Calibration Ticks (Automotive Caliper / Tachometer Marks) -->
+  <line x1="12" y1="41" x2="16" y2="41" stroke="#FF8000" stroke-width="1.2" stroke-opacity="0.7"/>
+  <line x1="11" y1="49" x2="17" y2="49" stroke="#FFAA00" stroke-width="1.5"/>
+  <line x1="12" y1="57" x2="16" y2="57" stroke="#FF8000" stroke-width="1.2" stroke-opacity="0.7"/>
+
+  <line x1="84" y1="41" x2="88" y2="41" stroke="#00E5FF" stroke-width="1.2" stroke-opacity="0.7"/>
+  <line x1="83" y1="49" x2="89" y2="49" stroke="#00E5FF" stroke-width="1.5"/>
+  <line x1="84" y1="57" x2="88" y2="57" stroke="#00E5FF" stroke-width="1.2" stroke-opacity="0.7"/>
+
+  <!-- Top Apex Telemetry Status Beacon -->
+  <circle cx="50" cy="14" r="1.8" fill="#00E5FF" filter="url(#skGlow)" />
+  <circle cx="50" cy="14" r="3.2" stroke="#00E5FF" stroke-width="0.6" stroke-opacity="0.4" fill="none"/>
+
+  <!-- Monogram Glyph 'S' -->
+  <path
+    d="M 44,29 L 28,29 C 24.5,29 23,31 23,34.5 L 23,43 C 23,46.5 25,48.5 28,49.5 L 39,52.5 C 42,53.5 44,55.5 44,59 L 44,65.5 C 44,69 42.5,71 39,71 L 23,71"
+    fill="none"
+    stroke="url(#skPapaya)"
+    stroke-width="5.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Monogram Glyph 'K' - Vertical Spine -->
+  <line
+    x1="54"
+    y1="29"
+    x2="54"
+    y2="71"
+    stroke="url(#skPapaya)"
+    stroke-width="5.5"
+    stroke-linecap="round"
+  />
+
+  <!-- Monogram Glyph 'K' - Upper Diagonal (Papaya High-Voltage Arm) -->
+  <line
+    x1="55"
+    y1="48"
+    x2="74"
+    y2="29"
+    stroke="url(#skPapaya)"
+    stroke-width="5.5"
+    stroke-linecap="round"
+  />
+
+  <!-- Monogram Glyph 'K' - Lower Diagonal (Aerodynamic Electric Cyan Arm) -->
+  <line
+    x1="55"
+    y1="52"
+    x2="74"
+    y2="71"
+    stroke="url(#skCyan)"
+    stroke-width="5.5"
+    stroke-linecap="round"
+    filter="url(#skGlow)"
+  />
+
+  <!-- High-Speed Energy Pulse Apex: Node Core & Lightning Spark -->
+  <circle cx="54" cy="50" r="2.2" fill="#00E5FF" />
+  <circle cx="54" cy="50" r="4.2" stroke="#00E5FF" stroke-width="0.7" stroke-opacity="0.6" fill="none" />
+
+  <!-- Dynamic Electric Lightning Vector Accent between S and K -->
+  <path
+    d="M 41,47 L 46,41 L 44,48 L 49,43"
+    fill="none"
+    stroke="#00E5FF"
+    stroke-width="1.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#skGlow)"
+  />
+</svg>

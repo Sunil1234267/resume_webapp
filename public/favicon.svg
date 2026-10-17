@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <radialGradient id="favBg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#191B2E"/>
+      <stop offset="100%" stop-color="#07080D"/>
+    </radialGradient>
+    <linearGradient id="favPapaya" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFAA00"/>
+      <stop offset="50%" stop-color="#FF8000"/>
+      <stop offset="100%" stop-color="#FF3700"/>
+    </linearGradient>
+    <linearGradient id="favCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#70F3FF"/>
+      <stop offset="100%" stop-color="#00E5FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Hex Shield Background -->
+  <path
+    d="M 48,6 C 49.3,5.3 50.7,5.3 52,6 L 86,24.5 C 89,26 91,29 91,32.5 L 91,66 C 91,69.5 89,72.5 86,74 L 52,92.5 C 50.7,93.2 49.3,93.2 48,92.5 L 14,74 C 11,72.5 9,69.5 9,66 L 9,32.5 C 9,29 11,26 14,24.5 Z"
+    fill="url(#favBg)"
+    stroke="#FF8000"
+    stroke-width="3"
+  />
+
+  <!-- Top Apex Cyan Indicator -->
+  <circle cx="50" cy="14" r="2.5" fill="#00E5FF"/>
+
+  <!-- 'S' Monogram -->
+  <path
+    d="M 44,28 L 28,28 C 24,28 22,30 22,34 L 22,43 C 22,47 24,49 28,50 L 39,53 C 43,54 45,56 45,60 L 45,66 C 45,70 43,72 39,72 L 22,72"
+    fill="none"
+    stroke="url(#favPapaya)"
+    stroke-width="7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- 'K' Spine -->
+  <line
+    x1="55"
+    y1="28"
+    x2="55"
+    y2="72"
+    stroke="url(#favPapaya)"
+    stroke-width="7"
+    stroke-linecap="round"
+  />
+
+  <!-- 'K' Upper Arm -->
+  <line
+    x1="56"
+    y1="47"
+    x2="75"
+    y2="28"
+    stroke="url(#favPapaya)"
+    stroke-width="7"
+    stroke-linecap="round"
+  />
+
+  <!-- 'K' Lower Arm (Cyan) -->
+  <line
+    x1="56"
+    y1="53"
+    x2="75"
+    y2="72"
+    stroke="url(#favCyan)"
+    stroke-width="7"
+    stroke-linecap="round"
+  />
+
+  <!-- Center Energy Core -->
+  <circle cx="55" cy="50" r="3" fill="#00E5FF"/>
+</svg>

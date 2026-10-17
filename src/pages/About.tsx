@@ -1,5 +1,6 @@
 import { resumeData } from "@/lib/data";
 import { motion } from "framer-motion";
+import { LogoEmblem } from "@/components/ui/Logo";
 import {
   User,
   Languages,
@@ -136,12 +137,9 @@ const About = () => {
             {/* Ambient glow */}
             <div className="absolute top-0 w-full h-24 bg-gradient-to-b from-[#FF8000]/15 to-transparent" />
 
-            {/* Monogram Badge */}
-            <div className="w-28 h-28 rounded-2xl bg-gradient-to-tr from-[#FF8000] via-[#FFAA00] to-[#FF4500] p-1 shadow-xl shadow-[#FF8000]/25 mb-5 relative group">
-              <div className="w-full h-full rounded-[14px] bg-[#08080C] flex flex-col items-center justify-center">
-                <span className="text-3xl font-black font-display text-white">SK</span>
-                <span className="text-[10px] font-mono text-[#FF8000] mt-0.5">DEV // ENG</span>
-              </div>
+            {/* Engineering Crest Emblem */}
+            <div className="mb-5 relative group">
+              <LogoEmblem sizePx={108} />
             </div>
 
             <h2 className="text-2xl font-bold font-display text-white whitespace-nowrap">{resumeData.personal.name}</h2>

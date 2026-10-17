@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { resumeData } from "@/lib/data";
+import { Logo } from "@/components/ui/Logo";
 import { Cpu, Github, Linkedin, Mail, ArrowUpRight, ShieldCheck, Terminal, Zap } from "lucide-react";
 
 const Footer = () => {
@@ -13,14 +14,9 @@ const Footer = () => {
           
           {/* Column 1: Brand & Bio */}
           <div className="md:col-span-2 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#FF8000] via-[#FFAA00] to-[#FF4500] flex items-center justify-center text-black shadow-lg shadow-[#FF8000]/25 font-black">
-                <span className="font-mono text-xs">SK</span>
-              </div>
-              <span className="font-display font-bold text-lg text-white">
-                Sunil Khatri
-              </span>
-            </div>
+            <Link to="/" className="inline-block group" aria-label="Sunil Khatri Home">
+              <Logo size="md" showText={true} showSubtitle={true} subtitleClassName="inline-block" />
+            </Link>
             <p className="text-sm text-slate-400 max-w-md leading-relaxed">
               Senior Software Engineer specializing in automotive embedded systems, electric vehicle architectures (BMS/VCU), SIL/MIL validation, and agentic AI integrations.
             </p>

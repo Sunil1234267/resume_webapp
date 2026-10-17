@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { navLinks } from "@/lib/data";
 import { ModeToggle } from "@/components/theme/ModeToggle";
 import { Button } from "@/components/ui/button";
+import { Logo } from "@/components/ui/Logo";
 import { Menu, X, Sparkles, Send } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -17,32 +18,8 @@ const Header = () => {
         <div className="w-full flex items-center justify-between px-3 sm:px-6 py-2 sm:py-2.5 rounded-full bg-[#0D0E17]/95 backdrop-blur-2xl border border-[#FF8000]/35 shadow-2xl shadow-black/80">
           
           {/* Logo Brand with Name in a SINGLE LINE */}
-          <NavLink to="/" className="flex items-center gap-2.5 group flex-shrink-0">
-            {/* SK Monogram Pill */}
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-[#FF8000] via-[#FFAA00] to-[#FF4500] flex items-center justify-center text-black font-black shadow-lg shadow-[#FF8000]/30 group-hover:scale-105 transition-transform flex-shrink-0">
-              <span className="font-mono text-xs font-black tracking-tight">SK</span>
-            </div>
-
-            {/* Name + Telemetry Shift-Lights on SINGLE Line */}
-            <div className="flex flex-col flex-shrink-0">
-              <div className="flex items-center gap-2 flex-shrink-0">
-                <span className="font-display font-bold text-sm sm:text-base tracking-tight text-white whitespace-nowrap">
-                  Sunil Khatri
-                </span>
-                
-                {/* Steering Wheel Shift Lights */}
-                <div className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-black/70 border border-white/10 flex-shrink-0" title="Telemetry Shift Lights">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF] animate-pulse" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF]" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF8000]" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF4500]" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF2A42]" />
-                </div>
-              </div>
-              <span className="text-[10px] text-[#FF8000] font-mono tracking-wider uppercase whitespace-nowrap hidden md:inline-block">
-                AUTOMOTIVE & AI SYSTEMS ENGINEER
-              </span>
-            </div>
+          <NavLink to="/" className="group flex-shrink-0" aria-label="Sunil Khatri Home">
+            <Logo size="sm" showText={true} showSubtitle={true} subtitleClassName="hidden md:inline-block" />
           </NavLink>
 
           {/* Desktop Nav Links */}
