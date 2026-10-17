@@ -45,7 +45,7 @@ const Contact = () => {
     setResponseMsg(null);
 
     const url = import.meta.env.VITE_N8N_WEBHOOK_URL;
-    
+
     // Validate form fields
     if (!name.trim() || !email.trim() || !message.trim()) {
       toast({
@@ -107,7 +107,7 @@ const Contact = () => {
 
   return (
     <div className="section-container space-y-16">
-      
+
       {/* Header */}
       <div className="page-header">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF8000]/10 border border-[#FF8000]/25 text-[#FF8000] text-xs font-mono mb-4">
@@ -118,15 +118,15 @@ const Contact = () => {
           Get in <span className="text-gradient-papaya">Touch</span>
         </h1>
         <p className="page-header-description">
-          Whether you want to discuss automotive engineering challenges, electric vehicle systems, or explore career opportunities, my communication channel is always open.
+          Whether you want to discuss automotive engineering challenges, electric vehicle systems, You can write Email or connect on LinkedIn.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto">
-        
+
         {/* Left Column: Direct Contact Hub */}
         <div className="lg:col-span-5 space-y-6">
-          
+
           {/* Quick Email Card */}
           <div className="glass-card p-6 space-y-4 border-[#FF8000]/30 bg-[#0D0E18]/85">
             <span className="text-xs font-mono text-[#FF8000] uppercase tracking-wider font-semibold">
