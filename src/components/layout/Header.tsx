@@ -1,90 +1,205 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { navLinks } from "@/lib/data";
 import { ModeToggle } from "@/components/theme/ModeToggle";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Code2, Bot } from "lucide-react";
+import { Menu, X, Sparkles, Send } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const mobileMenuVariants = {
-    initial: { opacity: 0, y: -20 },
-    animate: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeInOut" } },
-    exit: { opacity: 0, y: -20, transition: { duration: 0.3, ease: "easeInOut" } },
-  };
-
-  const navItemVariants = {
-    hover: { scale: 1.1 },
-    tap: { scale: 0.95 },
-  };
-
-  const renderNavLinks = (isMobile = false) =>
-    navLinks.map((link) => (
-      <NavLink key={link.href} to={link.href} onClick={isMobile ? toggleMenu : undefined}>
-        {({ isActive }) => (
-          <motion.div
-            variants={navItemVariants}
-            whileHover="hover"
-            whileTap="tap"
-            className={`relative px-3 py-2 text-sm font-medium ${isMobile ? "text-lg" : ""}`}
-          >
-            <span
-              className={`transition-colors ${
-                isActive ? "text-primary" : "text-muted-foreground hover:text-primary"
-              }`}
-            >
-              {link.label}
-            </span>
-            {isActive && (
-              <motion.div
-                layoutId={isMobile ? "active-mobile-indicator" : "active-desktop-indicator"}
-                className="absolute inset-0 bg-accent rounded-md -z-10"
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              />
-            )}
-          </motion.div>
-        )}
-      </NavLink>
-    ));
-
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center">
-        <NavLink to="/" className="mr-6 flex items-center space-x-2">
-          <Code2 className="h-6 w-6 text-primary" />
-          <span className="hidden font-bold sm:inline-block">Sunil Khatri</span>
-        </NavLink>
+    <header className="fixed top-0 left-0 right-0 z-50 w-full pt-3 px-3 sm:px-6 pointer-events-none">
+      <div className="max-w-6xl mx-auto flex items-center justify-between pointer-events-auto">
+        {/* Floating Glassmorphic Telemetry Dock */}
+        <div className="w-full flex items-center justify-between px-3 sm:px-6 py-2 sm:py-2.5 rounded-full bg-[#0D0E17]/95 backdrop-blur-2xl border border-[#FF8000]/35 shadow-2xl shadow-black/80">
+          
+          {/* Logo Brand with Name in a SINGLE LINE */}
+          <NavLink to="/" className="flex items-center gap-2.5 group flex-shrink-0">
+            {/* SK Monogram Pill */}
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-[#FF8000] via-[#FFAA00] to-[#FF4500] flex items-center justify-center text-black font-black shadow-lg shadow-[#FF8000]/30 group-hover:scale-105 transition-transform flex-shrink-0">
+              <span className="font-mono text-xs font-black tracking-tight">SK</span>
+            </div>
 
-        <nav className="hidden md:flex items-center space-x-1">{renderNavLinks()}</nav>
-
-        <div className="flex flex-1 items-center justify-end space-x-4">
-          <NavLink to="/chatbot">
-            <Button variant="ghost" size="icon" className="relative">
-              <Bot className="h-4 w-4" />
-              <span className="sr-only">AI Assistant</span>
-            </Button>
+            {/* Name + Telemetry Shift-Lights on SINGLE Line */}
+            <div className="flex flex-col flex-shrink-0">
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <span className="font-display font-bold text-sm sm:text-base tracking-tight text-white whitespace-nowrap">
+                  Sunil Khatri
+                </span>
+                
+                {/* Steering Wheel Shift Lights */}
+                <div className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-black/70 border border-white/10 flex-shrink-0" title="Telemetry Shift Lights">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF] animate-pulse" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00E5FF]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF8000]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF4500]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF2A42]" />
+                </div>
+              </div>
+              <span className="text-[10px] text-[#FF8000] font-mono tracking-wider uppercase whitespace-nowrap hidden md:inline-block">
+                AUTOMOTIVE & AI SYSTEMS ENGINEER
+              </span>
+            </div>
           </NavLink>
-          <ModeToggle />
-          <div className="md:hidden">
-            <Button variant="ghost" size="icon" onClick={toggleMenu}>
-              {isOpen ? <X /> : <Menu />}
-            </Button>
+
+          {/* Desktop Nav Links */}
+          <nav className="hidden lg:flex items-center space-x-1">
+            {navLinks.map((link) => {
+              const Icon = link.icon;
+              return (
+                <NavLink key={link.href} to={link.href}>
+                  {({ isActive }) => (
+                    <motion.div
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      className={`relative px-3.5 py-1.5 text-xs font-mono font-medium rounded-full transition-colors flex items-center gap-1.5 whitespace-nowrap ${
+                        isActive
+                          ? "text-[#FF8000] font-bold"
+                          : "text-slate-300 hover:text-white hover:bg-white/5"
+                      }`}
+                    >
+                      {Icon && <Icon className="w-3.5 h-3.5 opacity-70" />}
+                      <span>{link.label}</span>
+                      {isActive && (
+                        <motion.div
+                          layoutId="active-nav-pill"
+                          className="absolute inset-0 bg-[#FF8000]/15 border border-[#FF8000]/50 rounded-full -z-10 shadow-sm shadow-[#FF8000]/30"
+                          transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                        />
+                      )}
+                    </motion.div>
+                  )}
+                </NavLink>
+              );
+            })}
+          </nav>
+
+          {/* Action CTAs */}
+          <div className="flex items-center gap-1.5 sm:gap-2.5 flex-shrink-0">
+            {/* AI Copilot Quick Pill */}
+            <NavLink to="/chatbot" className="hidden sm:inline-flex">
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-8 rounded-full text-xs font-mono border-[#00E5FF]/40 bg-[#00E5FF]/10 text-[#00E5FF] hover:bg-[#00E5FF]/20 hover:border-[#00E5FF] gap-1.5 transition-all shadow-sm"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-[#00E5FF]" />
+                <span>AI Copilot</span>
+              </Button>
+            </NavLink>
+
+            {/* Quick Contact CTA */}
+            <Link to="/contact" className="hidden md:inline-flex">
+              <Button
+                size="sm"
+                className="h-8 rounded-full text-xs font-mono font-bold bg-gradient-to-r from-[#FF8000] via-[#FFAA00] to-[#FF4500] hover:from-[#FF8000] hover:to-[#FFAA00] text-black shadow-md shadow-[#FF8000]/30 gap-1.5"
+              >
+                <Send className="w-3 h-3" />
+                <span>Connect</span>
+              </Button>
+            </Link>
+
+            <ModeToggle />
+
+            {/* Mobile Menu Toggle Button */}
+            <div className="lg:hidden">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 text-white hover:bg-white/10 rounded-full"
+                onClick={toggleMenu}
+                aria-label="Toggle Menu"
+              >
+                {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+              </Button>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Mobile Drawer Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            variants={mobileMenuVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className="md:hidden border-t"
+            initial={{ opacity: 0, y: -10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ duration: 0.18 }}
+            className="lg:hidden max-w-6xl mx-auto mt-2 pointer-events-auto"
           >
-            <nav className="flex flex-col items-center space-y-2 p-4">{renderNavLinks(true)}</nav>
+            <div className="glass-panel rounded-2xl p-4 border border-[#FF8000]/35 shadow-2xl space-y-2">
+              <div className="grid grid-cols-2 gap-2">
+                {navLinks.map((link) => {
+                  const Icon = link.icon;
+                  return (
+                    <NavLink
+                      key={link.href}
+                      to={link.href}
+                      onClick={toggleMenu}
+                      className={({ isActive }) =>
+                        `flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-sm font-mono font-medium transition-colors ${
+                          isActive
+                            ? "bg-[#FF8000]/20 text-[#FF8000] border border-[#FF8000]/50 font-bold"
+                            : "text-slate-300 hover:text-white hover:bg-white/5"
+                        }`
+                      }
+                    >
+                      {Icon && <Icon className="w-4 h-4 text-[#FF8000]" />}
+                      <span>{link.label}</span>
+                    </NavLink>
+                  );
+                })}
+              </div>
+
+              <div className="pt-2 border-t border-white/10 flex flex-col gap-2">
+                <Link to="/chatbot" onClick={toggleMenu}>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-center text-xs font-mono border-[#00E5FF]/40 text-[#00E5FF] bg-[#00E5FF]/10 gap-2 h-9 rounded-xl"
+                  >
+                    <Sparkles className="w-3.5 h-3.5" /> Launch AI Copilot
+                  </Button>
+                </Link>
+                <Link to="/contact" onClick={toggleMenu}>
+                  <Button
+                    className="w-full justify-center text-xs font-mono font-bold bg-gradient-to-r from-[#FF8000] via-[#FFAA00] to-[#FF4500] text-black h-9 rounded-xl shadow-md shadow-[#FF8000]/30"
+                  >
+                    Transmit Message
+                  </Button>
+                </Link>
+
+                {/* Mobile Social Quick Bar */}
+                <div className="flex items-center justify-center gap-3 pt-1">
+                  <a
+                    href="https://linkedin.com/in/sunilk15"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs font-mono text-slate-400 hover:text-[#00E5FF] transition-colors flex items-center gap-1"
+                  >
+                    <span>LinkedIn</span>
+                  </a>
+                  <span className="text-slate-600">•</span>
+                  <a
+                    href="https://github.com/Sunil1234267"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs font-mono text-slate-400 hover:text-[#FF8000] transition-colors flex items-center gap-1"
+                  >
+                    <span>GitHub</span>
+                  </a>
+                  <span className="text-slate-600">•</span>
+                  <a
+                    href="mailto:sunilkhatri15499@gmail.com"
+                    className="text-xs font-mono text-slate-400 hover:text-[#FF8000] transition-colors"
+                  >
+                    <span>Email</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,8 +1,6 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
 import Layout from "./components/layout/Layout";
-import PageWrapper from "./components/layout/PageWrapper";
 import Loader from "./components/layout/Loader";
 
 // Lazy load page components
@@ -14,27 +12,32 @@ const Other = lazy(() => import("./pages/Other"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Chatbot = lazy(() => import("./pages/Chatbot"));
 
-const AnimatedRoutes = () => {
-  const location = useLocation();
-  return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<PageWrapper><Suspense fallback={<Loader />}><Home /></Suspense></PageWrapper>} />
-          <Route path="about" element={<PageWrapper><Suspense fallback={<Loader />}><About /></Suspense></PageWrapper>} />
-          <Route path="experience" element={<PageWrapper><Suspense fallback={<Loader />}><Experience /></Suspense></PageWrapper>} />
-          <Route path="projects" element={<PageWrapper><Suspense fallback={<Loader />}><Projects /></Suspense></PageWrapper>} />
-          <Route path="other" element={<PageWrapper><Suspense fallback={<Loader />}><Other /></Suspense></PageWrapper>} />
-          <Route path="contact" element={<PageWrapper><Suspense fallback={<Loader />}><Contact /></Suspense></PageWrapper>} />
-          <Route path="chatbot" element={<PageWrapper><Suspense fallback={<Loader />}><Chatbot /></Suspense></PageWrapper>} />
-        </Route>
-      </Routes>
-    </AnimatePresence>
-  );
+// Scroll to top immediately on navigation
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [pathname]);
+  return null;
 };
 
 const App = () => {
-  return <AnimatedRoutes />;
-}
+  return (
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Suspense fallback={<Loader />}><Home /></Suspense>} />
+          <Route path="about" element={<Suspense fallback={<Loader />}><About /></Suspense>} />
+          <Route path="experience" element={<Suspense fallback={<Loader />}><Experience /></Suspense>} />
+          <Route path="projects" element={<Suspense fallback={<Loader />}><Projects /></Suspense>} />
+          <Route path="other" element={<Suspense fallback={<Loader />}><Other /></Suspense>} />
+          <Route path="contact" element={<Suspense fallback={<Loader />}><Contact /></Suspense>} />
+          <Route path="chatbot" element={<Suspense fallback={<Loader />}><Chatbot /></Suspense>} />
+        </Route>
+      </Routes>
+    </>
+  );
+};
 
 export default App;
