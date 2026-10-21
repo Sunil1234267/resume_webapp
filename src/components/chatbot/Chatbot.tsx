@@ -87,7 +87,13 @@ const Chatbot: React.FC = () => {
           'Content-Type': 'application/json',
           Authorization: basicAuth,
         },
-        body: JSON.stringify({ message: userMessage.content, chatInput: userMessage.content, userId: userMessage.user_id }),
+        body: JSON.stringify({
+          message: userMessage.content,
+          chatInput: userMessage.content,
+          sessionId: userMessage.id || `session_${Date.now()}`,
+          session_id: userMessage.id || `session_${Date.now()}`,
+          userId: userMessage.user_id,
+        }),
       });
 
       if (!response.ok) {
