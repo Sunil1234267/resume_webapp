@@ -77,12 +77,17 @@ const Chatbot: React.FC = () => {
 
     // Send message to n8n webhook
     try {
+      const username = import.meta.env.VITE_N8N_USERNAME || "sunilkhatri";
+      const password = import.meta.env.VITE_N8N_PASSWORD || "Utility@5432";
+      const basicAuth = "Basic " + btoa(`${username}:${password}`);
+
       const response = await fetch(N8N_WEBHOOK_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: basicAuth,
         },
-        body: JSON.stringify({ message: userMessage.content, userId: userMessage.user_id }),
+        body: JSON.stringify({ message: userMessage.content, chatInput: userMessage.content, userId: userMessage.user_id }),
       });
 
       if (!response.ok) {

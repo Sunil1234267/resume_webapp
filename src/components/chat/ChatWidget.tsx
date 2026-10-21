@@ -47,12 +47,17 @@ const ChatWidget = () => {
     }
 
     try {
+      const username = import.meta.env.VITE_N8N_USERNAME || "sunilkhatri";
+      const password = import.meta.env.VITE_N8N_PASSWORD || "Utility@5432";
+      const basicAuth = "Basic " + btoa(`${username}:${password}`);
+
       const response = await fetch(webhookUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: basicAuth,
         },
-        body: JSON.stringify({ message: userInput }),
+        body: JSON.stringify({ message: userInput, chatInput: userInput }),
       });
 
       if (!response.ok) {

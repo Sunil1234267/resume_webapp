@@ -183,11 +183,15 @@ const Chatbot = () => {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 4000); // 4-second timeout for snappy UX
 
+        const username = import.meta.env.VITE_N8N_USERNAME || "sunilkhatri";
+        const password = import.meta.env.VITE_N8N_PASSWORD || "Utility@5432";
+        const basicAuth = "Basic " + btoa(`${username}:${password}`);
+
         const response = await fetch(webhookUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Basic ${btoa("sunilkhatri:Utility@5432")}`,
+            Authorization: basicAuth,
             "X-Session-ID": sessionIdRef.current,
           },
           body: JSON.stringify({
