@@ -341,7 +341,7 @@ const About = () => {
                   {idx === 3 && <Scale className="w-4 h-4" />}
                 </div>
                 <h3 className="text-base font-bold text-white font-display">
-                  {item.pillar}
+                  {item.title || item.pillar}
                 </h3>
               </div>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed pt-1">

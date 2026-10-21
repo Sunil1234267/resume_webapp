@@ -470,7 +470,7 @@ const Home = () => {
             Flagship Production <span className="text-gradient-papaya">Systems & Hardware</span>
           </h2>
           <p className="page-header-description">
-            Complete production software and hardware architectures engineered from scratch — spanning custom automotive PCBs, Kubernetes cloud infrastructure, and generative AI CAD pipelines.
+            Production-grade architectures designed, built, and shipped independently — bridging AEC-Q100 automotive hardware, scalable Kubernetes clouds, and generative AI pipelines.
           </p>
 
           {/* Project Filter Pills */}
