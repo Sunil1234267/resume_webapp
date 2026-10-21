@@ -11,6 +11,7 @@ import {
   Sparkles,
   RefreshCw,
 } from "lucide-react";
+import MarkdownContent from "@/components/chat/MarkdownContent";
 
 interface Message {
   id: number;
@@ -357,9 +358,7 @@ const Chatbot = () => {
                       : "bg-[#08080C] border border-white/10 text-slate-200 shadow-sm"
                       }`}
                   >
-                    <div className="whitespace-pre-wrap font-sans">
-                      {message.text}
-                    </div>
+                    <MarkdownContent content={message.text} isUser={isUser} />
 
                     <div
                       className={`flex items-center justify-between text-[10px] font-mono pt-1 ${isUser ? "text-black/60" : "text-slate-500"

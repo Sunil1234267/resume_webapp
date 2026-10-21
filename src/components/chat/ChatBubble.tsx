@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Bot, User, AlertTriangle } from "lucide-react";
 import { Message } from "./ChatWidget";
 import { cn } from "@/lib/utils";
+import MarkdownContent from "./MarkdownContent";
 
 interface ChatBubbleProps {
   message: Message;
@@ -48,7 +49,7 @@ const ChatBubble = ({ message }: ChatBubbleProps) => {
             : "bg-muted text-muted-foreground rounded-bl-lg"
         )}
       >
-        <p className="text-sm break-words">{message.text}</p>
+        <MarkdownContent content={message.text} isUser={isUser} />
       </div>
       {isUser && (
         <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground flex-shrink-0">

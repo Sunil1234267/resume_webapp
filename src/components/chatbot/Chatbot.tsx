@@ -11,7 +11,8 @@ import {
 } from '@/components/ui/dialog';
 import { supabase } from '@/lib/supabase';
 import { Tables } from '@/types/supabase';
-import { cn } from '@/lib/utils'; // Import the cn utility function
+import { cn } from '@/lib/utils';
+import MarkdownContent from '@/components/chat/MarkdownContent';
 
 type Message = Tables<'messages'>;
 
@@ -169,7 +170,7 @@ const Chatbot: React.FC = () => {
                       : 'bg-secondary text-secondary-foreground'
                   )}
                 >
-                  {msg.content}
+                  <MarkdownContent content={msg.content} isUser={msg.is_user_message} />
                   <div className="text-xs text-right opacity-70 mt-1">
                     {new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </div>
