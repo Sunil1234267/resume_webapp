@@ -57,7 +57,12 @@ const ChatWidget = () => {
           "Content-Type": "application/json",
           Authorization: basicAuth,
         },
-        body: JSON.stringify({ message: userInput, chatInput: userInput }),
+        body: JSON.stringify({
+          message: userInput,
+          chatInput: userInput,
+          sessionId: `widget_${Date.now()}`,
+          session_id: `widget_${Date.now()}`,
+        }),
       });
 
       if (!response.ok) {

@@ -196,6 +196,8 @@ const Chatbot = () => {
           },
           body: JSON.stringify({
             chatInput: textToSend,
+            message: textToSend,
+            sessionId: sessionIdRef.current,
             session_id: sessionIdRef.current,
             timestamp: new Date().toISOString(),
             source: "portfolio_copilot",
