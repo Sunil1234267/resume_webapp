@@ -22,7 +22,7 @@ const ChatWidget = () => {
   ]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
+  const webhookUrl = import.meta.env.VITE_N8N_CHATBOT_WEBHOOK_URL || import.meta.env.VITE_N8N_WEBHOOK_URL;
 
   const handleSendMessage = async (userInput: string) => {
     if (!userInput.trim()) return;

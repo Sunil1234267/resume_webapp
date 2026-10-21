@@ -15,7 +15,7 @@ import { cn } from '@/lib/utils'; // Import the cn utility function
 
 type Message = Tables<'messages'>;
 
-const N8N_WEBHOOK_URL = import.meta.env.VITE_N8N_WEBHOOK_URL;
+const N8N_WEBHOOK_URL = import.meta.env.VITE_N8N_CHATBOT_WEBHOOK_URL || import.meta.env.VITE_N8N_WEBHOOK_URL;
 
 const Chatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
