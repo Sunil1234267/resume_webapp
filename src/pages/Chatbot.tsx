@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
-import { resumeData } from "@/lib/data";
 import {
   Loader2,
   Send,
@@ -11,12 +10,6 @@ import {
   User,
   Sparkles,
   RefreshCw,
-  Cpu,
-  Car,
-  Layers,
-  ShieldCheck,
-  CheckCircle2,
-  Terminal,
 } from "lucide-react";
 
 interface Message {
@@ -181,10 +174,10 @@ const Chatbot = () => {
     if (webhookUrl && !webhookUrl.includes("YOUR_N8N_WEBHOOK_URL")) {
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 4000); // 4-second timeout for snappy UX
+        const timeoutId = setTimeout(() => controller.abort(), 15000); // 15-second timeout for LLM generation
 
-        const username = import.meta.env.VITE_N8N_USERNAME || "sunilkhatri";
-        const password = import.meta.env.VITE_N8N_PASSWORD || "Utility@5432";
+        const username = import.meta.env.VITE_N8N_USERNAME || "sunil_chatbot_n8n";
+        const password = import.meta.env.VITE_N8N_PASSWORD || "Utility@123";
         const basicAuth = "Basic " + btoa(`${username}:${password}`);
 
         const response = await fetch(webhookUrl, {

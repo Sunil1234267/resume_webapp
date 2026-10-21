@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, X, Bot, User, Send } from "lucide-react";
+import { MessageSquare, X } from "lucide-react";
 import ChatHeader from "./ChatHeader";
 import ChatMessages from "./ChatMessages";
 import ChatInput from "./ChatInput";
@@ -47,8 +47,8 @@ const ChatWidget = () => {
     }
 
     try {
-      const username = import.meta.env.VITE_N8N_USERNAME || "sunilkhatri";
-      const password = import.meta.env.VITE_N8N_PASSWORD || "Utility@5432";
+      const username = import.meta.env.VITE_N8N_USERNAME || "sunil_chatbot_n8n";
+      const password = import.meta.env.VITE_N8N_PASSWORD || "Utility@123";
       const basicAuth = "Basic " + btoa(`${username}:${password}`);
 
       const response = await fetch(webhookUrl, {
