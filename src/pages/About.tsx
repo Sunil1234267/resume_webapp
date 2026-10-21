@@ -113,7 +113,7 @@ const itemVariants = {
 const About = () => {
   return (
     <div className="section-container space-y-20">
-      
+
       {/* 1. Header */}
       <div className="page-header">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF8000]/10 border border-[#FF8000]/25 text-[#FF8000] text-xs font-mono mb-4">
@@ -130,7 +130,7 @@ const About = () => {
 
       {/* 2. Bento Profile Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
+
         {/* Left Column: Avatar & Quick Info */}
         <div className="lg:col-span-4 space-y-6">
           <div className="glass-card p-6 sm:p-8 flex flex-col items-center text-center relative overflow-hidden border-[#FF8000]/30 bg-[#0D0E18]/85">
@@ -215,12 +215,23 @@ const About = () => {
                 );
               })}
             </div>
+
+            {/* IELTS Certification Highlight */}
+            <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+              <div>
+                <span className="text-xs font-mono font-medium text-white block">IELTS Academic</span>
+                <span className="text-[11px] text-slate-400">English Proficiency</span>
+              </div>
+              <span className="px-2.5 py-1 rounded-full bg-[#00E5FF]/10 text-[#00E5FF] border border-[#00E5FF]/30 font-mono text-xs font-bold shadow-sm shadow-[#00E5FF]/20">
+                6.5 Band
+              </span>
+            </div>
           </div>
         </div>
 
         {/* Right Column: Professional Background & Philosophy */}
         <div className="lg:col-span-8 space-y-6">
-          
+
           {/* Engineering Narrative */}
           <div className="glass-card p-6 sm:p-8 space-y-4 border-[#FF8000]/30 bg-[#0D0E18]/85">
             <div className="flex items-center gap-2 text-[#FF8000] font-mono text-xs uppercase tracking-wider">
@@ -238,14 +249,14 @@ const About = () => {
                 Track record in safety-critical vehicle electrification: led full ASW development for EV BMS, VCU, and BCM using Extended Kalman Filters for LFP chemistries at <span className="text-[#00E5FF] font-semibold">Pravaig</span>, orchestrated powertrain SIL/MIL test campaigns at <span className="text-[#00E5FF] font-semibold">Mercedes-Benz R&D</span>, and engineered the 6-axis IMU sensor fusion lean angle firmware for <span className="text-[#FF8000] font-semibold">TVS Motors' Apache RTR 310</span> production motorcycle.
               </p>
               <p>
-                Creator of <strong className="text-white">four shipped production platforms built entirely solo</strong> from first principles (<span className="text-white font-mono text-xs">VanadiumVortex</span>, <span className="text-white font-mono text-xs">MotorCyclePro</span>, <span className="text-white font-mono text-xs">STP-AI</span>, <span className="text-white font-mono text-xs">STP Receipt System</span>), backed by an adversarial security mindset that remediated <span className="text-[#00E5FF] font-semibold">111 forensic database and concurrency defects</span> under multi-threaded loads.
+                Creator of <strong className="text-white">four shipped production platforms built entirely solo</strong> from first principles (<span className="text-white font-mono text-xs">VanadiumVortex</span>, <span className="text-white font-mono text-xs">MotorCyclePro</span>, <span className="text-white font-mono text-xs">STP-AI</span>, <span className="text-white font-mono text-xs">STP Receipt System</span>), backed by an adversarial security mindset that remediated <span className="text-[#00E5FF] font-semibold">forensic database and concurrency defects</span> under multi-threaded loads.
               </p>
             </div>
           </div>
 
-          {/* 4 Core Pillars */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            
+          {/* Core Engineering Pillars */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
             <div className="glass-card p-5 space-y-2.5 bg-[#0D0E18]/80 border-[#FF8000]/25">
               <div className="w-9 h-9 rounded-lg bg-[#FF8000]/10 border border-[#FF8000]/25 flex items-center justify-center text-[#FF8000]">
                 <Cpu className="w-4 h-4" />
@@ -266,23 +277,13 @@ const About = () => {
               </p>
             </div>
 
-            <div className="glass-card p-5 space-y-2.5 bg-[#0D0E18]/80 border-[#00E5FF]/25">
-              <div className="w-9 h-9 rounded-lg bg-[#00E5FF]/10 border border-[#00E5FF]/25 flex items-center justify-center text-[#00E5FF]">
-                <Cloud className="w-4 h-4" />
-              </div>
-              <h4 className="text-sm font-bold text-white font-display">Cloud Clusters & Concurrency</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Self-hosted k3s Kubernetes cluster, KEDA scale-to-zero GPU pods, PostgreSQL 16 (pg-boss, LISTEN/NOTIFY, advisory locks), Redis 7, and MinIO S3 object storage.
-              </p>
-            </div>
-
             <div className="glass-card p-5 space-y-2.5 bg-[#0D0E18]/80 border-[#FF8000]/25">
               <div className="w-9 h-9 rounded-lg bg-[#FF8000]/10 border border-[#FF8000]/25 flex items-center justify-center text-[#FF8000]">
                 <Sparkles className="w-4 h-4" />
               </div>
-              <h4 className="text-sm font-bold text-white font-display">Generative AI & High-FPS UI</h4>
+              <h4 className="text-sm font-bold text-white font-display">Generative AI & Intelligent Systems</h4>
               <p className="text-xs text-slate-400 leading-relaxed">
-                PyTorch, FLUX.2 Klein 4B, DreamBooth fine-tuning, dynamic Multi-LoRA adapter blending, 4-bit NF4 quantization, and Jetpack Compose 120 fps RenderNode drag engines.
+                Fine-tunes and deploys custom diffusion and LLM architectures with quantized GPU acceleration. Bridges state-of-the-art AI pipelines with industrial workflows and high-performance client applications.
               </p>
             </div>
 
@@ -391,7 +392,7 @@ const About = () => {
                   <p className="text-xs text-slate-400 mb-4 leading-relaxed">
                     {category.description}
                   </p>
-                  
+
                   <div className="flex flex-wrap gap-1.5 pt-2 border-t border-white/5">
                     {resumeData.skills[category.key as keyof typeof resumeData.skills]?.map((skill: string, index: number) => (
                       <span

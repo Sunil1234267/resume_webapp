@@ -78,9 +78,9 @@ const queryLocalKnowledge = (query: string): string => {
   }
 
   if (q.includes("audit") || q.includes("111") || q.includes("security") || q.includes("database")) {
-    return `**111-Defect Forensic Security & Concurrency Audit (2025 – 2026):**
+    return `**Defect Forensic Security & Concurrency Audit (2025 – 2026):**
 • Sunil conducted an exhaustive multidimensional security and concurrency audit across his production database clusters.
-• **Remediations:** Fixed 111 vulnerabilities including complete UUID migration, pg_advisory_lock distributed race-condition prevention, connection-pool serialization, and transactional atomicity under multi-threaded loads.`;
+• **Remediations:** Fixed vulnerabilities including complete UUID migration, pg_advisory_lock distributed race-condition prevention, connection-pool serialization, and transactional atomicity under multi-threaded loads.`;
   }
 
   if (q.includes("skill") || q.includes("stack") || q.includes("tools") || q.includes("language")) {
@@ -96,9 +96,10 @@ const queryLocalKnowledge = (query: string): string => {
 9. **Security:** Hardware AES-GCM, HMAC-SHA256, rolling NVS nonces, challenge-response pairing.`;
   }
 
-  if (q.includes("education") || q.includes("degree") || q.includes("college") || q.includes("certif")) {
+  if (q.includes("education") || q.includes("degree") || q.includes("college") || q.includes("certif") || q.includes("ielts") || q.includes("english")) {
     return `**Education & Industry Certifications:**
 • **Degree:** B.Tech in Electrical and Electronics Engineering from SRM Institute of Science and Technology, Chennai, India (2017 – 2021).
+• **English Language Proficiency:** IELTS Academic — 6.5 Overall Band (Competent & Professional English Communication).
 • **EV Specialization:** Certified Electric Vehicle Powertrain Specialist from Autobot Academy (India's Premier EV Engineering Bootcamp).
 • **Automotive Protocols:** Certified in CAN Bus Protocol & In-Vehicle Networking.
 • **Certifications:** UC Irvine Embedded Systems & IoT, University of Michigan Python, AUTOSAR Architecture, MATLAB & Simulink, Ansys Mechanical FEA.`;
@@ -116,7 +117,7 @@ const queryLocalKnowledge = (query: string): string => {
   // Default intelligent response summarizing background
   return `Sunil Khatri is a Senior Systems-First Software & Hardware Engineer with 4+ years of production experience:
 • **Automotive OEM Production:** TVS Apache RTR 310 (6-axis IMU lean angle sensor fusion in C/FreeRTOS), Pravaig Dynamics (complete EV BMS ASW with Extended Kalman Filtering), and Mercedes-Benz R&D (PikeTec TPT SIL/MIL powertrain testing).
-• **4 Solo Platforms Shipped:** VanadiumVortex (k3s Kubernetes AI fabric), MotorCyclePro (4-layer AEC-Q100 hardware & 120 fps Android app), STP-AI (FLUX.2 Klein 4B multi-LoRA vector engine), and STP Receipt System (industrial Raspberry Pi POS).
+• **4 Solo Platforms Shipped:** VanadiumVortex (k3s Kubernetes AI fabric), MotorCyclePro (4-layer AEC-Q100 hardware & 120 fps Android app), STP-AI (FLUX.2 Klein 4B multi-LoRA vector engine), and STP Receipt System (industrial POS).
 • **Forensic Rigor:** 111 database security and race-condition remediations across production architectures.
 
 *Feel free to ask about specific projects, automotive protocols, Kalman filters, or PCB design details!*`;
@@ -266,7 +267,7 @@ const Chatbot = () => {
 
   return (
     <div className="section-container space-y-6 pb-12">
-      
+
       {/* Header */}
       <div className="page-header mb-6">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00E5FF]/10 border border-[#00E5FF]/25 text-[#00E5FF] text-xs font-mono mb-3">
@@ -283,7 +284,7 @@ const Chatbot = () => {
 
       {/* Main Chat Interface Glass Card */}
       <div className="max-w-4xl mx-auto glass-card flex flex-col border-[#FF8000]/30 bg-[#0D0E18]/90 shadow-2xl rounded-2xl overflow-hidden">
-        
+
         {/* Chat Top Bar */}
         <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between bg-[#08080C]/80">
           <div className="flex items-center gap-3">
@@ -352,20 +353,18 @@ const Chatbot = () => {
                   )}
 
                   <div
-                    className={`max-w-[88%] sm:max-w-[80%] rounded-2xl p-4 text-xs sm:text-sm leading-relaxed space-y-1.5 ${
-                      isUser
-                        ? "bg-gradient-to-r from-[#FF8000] via-[#FFAA00] to-[#FF4500] text-black font-medium shadow-md shadow-[#FF8000]/20"
-                        : "bg-[#08080C] border border-white/10 text-slate-200 shadow-sm"
-                    }`}
+                    className={`max-w-[88%] sm:max-w-[80%] rounded-2xl p-4 text-xs sm:text-sm leading-relaxed space-y-1.5 ${isUser
+                      ? "bg-gradient-to-r from-[#FF8000] via-[#FFAA00] to-[#FF4500] text-black font-medium shadow-md shadow-[#FF8000]/20"
+                      : "bg-[#08080C] border border-white/10 text-slate-200 shadow-sm"
+                      }`}
                   >
                     <div className="whitespace-pre-wrap font-sans">
                       {message.text}
                     </div>
 
                     <div
-                      className={`flex items-center justify-between text-[10px] font-mono pt-1 ${
-                        isUser ? "text-black/60" : "text-slate-500"
-                      }`}
+                      className={`flex items-center justify-between text-[10px] font-mono pt-1 ${isUser ? "text-black/60" : "text-slate-500"
+                        }`}
                     >
                       <span>
                         {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}

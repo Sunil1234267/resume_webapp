@@ -29,7 +29,7 @@ export const resumeData = {
     title: "Full-Stack Software Engineer • Embedded Systems & Hardware Architect • Generative AI / ML • Automotive Electronics",
     shortTitle: "Senior Automotive Software & AI Systems Engineer",
     summary:
-      "Depth-first Systems Engineer with 4+ years of hands-on production engineering experience spanning automotive embedded platforms (2021–2025 at Pravaig Dynamics and KPIT Technologies) and modern cloud-native / Generative AI systems (2023–Present as an autonomous founder and systems architect). Proven track record in safety-critical vehicle electrification: led full ASW development for EV BMS, VCU, and BCM using Extended Kalman Filters for LFP chemistries at Pravaig, and led Mercedes-Benz SIL/MIL testing plus TVS Motors Renesas/ESP32 sensor firmware development at KPIT. Independently designed, architected, and shipped four complete production platforms: VanadiumVortex (Kubernetes-native AI fabric e-commerce platform with KEDA scale-to-zero GPU autoscaling and 10+ services), MotorCyclePro (custom multi-layer AEC-Q100 automotive PCB, ESP32-S3 firmware, sub-65 μA deep sleep, LoRa/CAN/BLE, and Android/WearOS app), STP-AI (FLUX.2 Klein 4B generative pipeline delivering 600 DPI rotary-screen-print-ready textile CAD), and STP Receipt System (industrial IoT print management system deployed on Raspberry Pi for an active manufacturing plant). Distinguished by first-principles root-cause engineering, adversarial threat modeling, rigorous MISRA-C and automotive compliance, and quantitative decision-making measured to μA, millivolt, and cent precision.",
+      "Depth-first Systems Engineer with 4+ years of hands-on production engineering experience spanning automotive embedded platforms (2021–2025 at Pravaig Dynamics and KPIT Technologies) and modern cloud-native / Generative AI systems (2023–Present as an autonomous founder and systems architect). Proven track record in safety-critical vehicle electrification: led full ASW development for EV BMS, VCU, and BCM using Extended Kalman Filters for LFP chemistries at Pravaig, and led Mercedes-Benz SIL/MIL testing plus TVS Motors Renesas/ESP32 sensor firmware development at KPIT. Independently designed, architected, and shipped four complete production platforms: VanadiumVortex (Kubernetes-native AI fabric e-commerce platform with KEDA scale-to-zero GPU autoscaling and 10+ services), MotorCyclePro (custom multi-layer AEC-Q100 automotive PCB, ESP32-S3 firmware, sub-65 μA deep sleep, LoRa/CAN/BLE, and Android/WearOS app), STP-AI (FLUX.2 Klein 4B generative pipeline delivering 600 DPI rotary-screen-print-ready textile CAD), and STP Receipt System (industrial IoT print management system deployed on local server for an active manufacturing plant). Distinguished by first-principles root-cause engineering, adversarial threat modeling, rigorous MISRA-C and automotive compliance, and quantitative decision-making measured to μA, millivolt, and cent precision.",
     contact: {
       phone: "+91 9672983175",
       email: "sunilkhatri15@gmail.com",
@@ -221,7 +221,7 @@ export const resumeData = {
       location: "Ajmer & Remote, India",
       responsibilities: [
         "Conceived, designed, built, and shipped four enterprise-grade production systems solo — spanning automotive-grade PCB fabrication, embedded firmware, mobile companion apps, generative AI inference pipelines, and distributed Kubernetes cloud clusters.",
-        "Conducted exhaustive multidimensional security and concurrency audits across own production systems; remediated 111 forensic database defects covering UUID migration, pg_advisory_lock distributed race-condition prevention, and connection-pool serialization.",
+        "Conducted exhaustive multidimensional security and concurrency audits across own production systems; remediated forensic database defects covering UUID migration, pg_advisory_lock distributed race-condition prevention, and connection-pool serialization.",
         "Engineered production Kubernetes cluster (k3s) with KEDA scale-to-zero GPU autoscaling, SuperTokens Core authentication, MinIO S3 object storage, and microservices event architecture.",
       ],
     },
@@ -332,7 +332,7 @@ export const resumeData = {
       deployment: "On-Premises Industrial Edge Hub",
       status: "24/7 Factory Operations Platform",
       description:
-        "On-premises edge operations hub deployed in an active manufacturing facility to coordinate real-time order processing and automated thermal printing. Operates with continuous uptime on a local intranet, providing fault-tolerant device discovery, live telemetry streaming, and resilient offline print queuing.",
+        "On-premises edge operations hub deployed in an active wrehouse facility to coordinate real-time order processing and automated thermal printing. Operates with continuous uptime on a local intranet, providing fault-tolerant device discovery, live telemetry streaming, and resilient offline print queuing.",
       technologies: [
         "React 18",
         "TypeScript",
@@ -452,7 +452,7 @@ export const resumeData = {
       link: "https://github.com/Sunil1234267",
     },
     {
-      title: "Automotive Multi-Layer PCB (KiCad BMW Platform)",
+      title: "Automotive Multi-Layer PCB (KiCad Platform)",
       category: "Hardware & PCB",
       duration: "2025 – 2026",
       description:
@@ -505,6 +505,12 @@ export const resumeData = {
   ],
 
   certifications: [
+    {
+      name: "IELTS Academic — 6.5 Overall Band",
+      provider: "IDP: IELTS Australia / British Council & Cambridge English",
+      category: "Language & Communication",
+      date: "Certified",
+    },
     {
       name: "EV Powertrain & Embedded Systems Specialization",
       provider: "Autobot Academy (India's Premier EV Engineering Bootcamp)",
@@ -573,14 +579,14 @@ export const resumeData = {
       organization: "Independent Systems Architecture",
       duration: "2023 – Present",
       description:
-        "Independently engineered VanadiumVortex (k3s AI fabric e-commerce), MotorCyclePro (AEC-Q100 automotive PCB & IoT ecosystem), STP-AI (FLUX.2 Klein 600 DPI CAD engine), and STP Receipt System (Raspberry Pi industrial print platform).",
+        "Independently engineered VanadiumVortex (k3s AI fabric e-commerce), MotorCyclePro (AEC-Q100 automotive PCB & IoT ecosystem), STP-AI (FLUX.2 Klein 600 DPI CAD engine), and STP Receipt System (industrial print platform).",
     },
     {
-      title: "111-Defect Forensic Security & Concurrency Audit",
+      title: "Forensic Security & Concurrency Audit",
       organization: "Production Database & Architecture",
       duration: "2025 – 2026",
       description:
-        "Conducted an exhaustive forensic audit across production database clusters, resolving 111 vulnerabilities including UUID migration, pg_advisory_lock distributed race prevention, and SQLite serialization on PostgreSQL.",
+        "Conducted an exhaustive forensic audit across production database clusters, resolving vulnerabilities including UUID migration, pg_advisory_lock distributed race prevention, and SQLite serialization on PostgreSQL.",
     },
     {
       title: "Production 2-Wheeler IMU Sensor Fusion Release",
